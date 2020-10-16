@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TextEncryptionComponent } from './pages/text-encryption/text-encryption.component';
 
-
+import { TextRecoveryComponent } from './pages/text-recovery/text-recovery.component';
 const routes: Routes = [
-  { path: '', component: TextEncryptionComponent },
+  { path: '', component: TextRecoveryComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TextEncrytionRoutingModule { }
+export class TextRecoveryRoutingModule { }

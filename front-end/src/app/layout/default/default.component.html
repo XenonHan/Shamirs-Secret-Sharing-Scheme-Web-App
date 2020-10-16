@@ -1,1 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <img class="navbar-brand" src="../../../assets/logo.png" style="width: 100px;height: 50px; ">
+    <div> &nbsp;&nbsp; </div>
+    <div class="collapse navbar-collapse show">
+        <ul class="navbar-nav " routerLinkActive="active">
+            <li class="nav-item">
+                <a class="nav-link inner" routerLink="/">Home
+                    <fa-icon [icon]="faHome"></fa-icon>
+                </a>
+
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link inner" routerLink="/text-ecnryption">Text Ecrytion
+                    <fa-icon [icon]="faLock"></fa-icon>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link inner" routerLink="/text-recovery">Text Recovery
+                    <fa-icon [icon]="faFileWord"></fa-icon>
+                </a>
+            </li>
+
+
+            <span class="nav-link inner" >Comming soon... </span>
+
+        </ul>
+    </div>
+</nav>
 <router-outlet></router-outlet>

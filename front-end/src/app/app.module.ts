@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import {DefaultModule} from './layout/default/default.module'
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,8 @@ import {DefaultModule} from './layout/default/default.module'
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    DefaultModule
+    DefaultModule,
+    
   ],
   providers: [FypBackendService],
   bootstrap: [AppComponent]
