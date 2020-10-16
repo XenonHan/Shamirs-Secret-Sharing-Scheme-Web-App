@@ -10,6 +10,7 @@ import {DefaultComponent} from './default.component';
   imports: [
     CommonModule,
     RouterModule
-  ]
+  ],
+  bootstrap: [DefaultComponent]
 })
 export class DefaultModule { }
