@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layout/default/default.component'
 import { HomepageComponent } from './modules/homepage/pages/homepage/homepage.component'
-import { TextEncryptionComponent } from './modules/text-encrytion/pages/text-encryption/text-encryption.component'
-import { TextRecoveryComponent } from './modules/text-recovery/pages/text-recovery/text-recovery.component';
+// import { TextEncryptionComponent } from './modules/text-encrytion/pages/text-encryption/text-encryption.component'
+// import { TextRecoveryComponent } from './modules/text-recovery/pages/text-recovery/text-recovery.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,11 +16,13 @@ const routes: Routes = [
       },
       {
         path: 'text-ecnryption',
-        component:TextEncryptionComponent
+        loadChildren: './modules/text-encrytion/text-encrytion.module#TextEncrytionModule'
+        // component:TextEncryptionComponent
 
       },      {
         path: 'text-recovery',
-        component:TextRecoveryComponent
+        loadChildren: './modules/text-recovery/text-recovery.module#TextRecoveryModule'
+        // component:TextRecoveryComponent
 
       },
     ]

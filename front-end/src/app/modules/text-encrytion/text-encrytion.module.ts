@@ -11,6 +11,7 @@ import{MatButtonModule} from '@angular/material/button';
     CommonModule,
     TextEncrytionRoutingModule,
     MatButtonModule
+
   ],
 })
 export class TextEncrytionModule { }
