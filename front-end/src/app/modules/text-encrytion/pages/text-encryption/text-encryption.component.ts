@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-text-encryption',
   templateUrl: './text-encryption.component.html',
