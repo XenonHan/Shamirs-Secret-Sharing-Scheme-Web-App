@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component:HomepageComponent
+        loadChildren: './modules/homepage/homepage.module#HomepageModule'
 
       },
       {

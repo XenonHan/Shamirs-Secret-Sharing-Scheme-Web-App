@@ -9,6 +9,8 @@ import { DefaultModule } from './layout/default/default.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {TextEncrytionModule} from './modules/text-encrytion/text-encrytion.module'
 import {TextRecoveryModule} from './modules/text-recovery/text-recovery.module'
+import {HomepageModule} from './modules/homepage/homepage.module'
+
 
 // import { MatButtonModule } from '@angular/material/button';
 
@@ -25,9 +27,10 @@ import {TextRecoveryModule} from './modules/text-recovery/text-recovery.module'
     AppRoutingModule,
     DefaultModule,
     BrowserAnimationsModule,
-    // MatButtonModule,
+    HomepageModule,
     TextEncrytionModule,
     TextRecoveryModule
+ 
   ],
   providers: [FypBackendService],
   bootstrap: [AppComponent],

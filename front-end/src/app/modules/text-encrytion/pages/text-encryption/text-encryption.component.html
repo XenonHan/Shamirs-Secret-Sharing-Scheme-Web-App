@@ -1,5 +1,75 @@
-<button mat-raised-button>Basic</button>
-<button mat-raised-button color="primary">Primary</button>
-<button mat-raised-button color="accent">Accent</button>
-<button mat-raised-button color="warn">Warn</button>
-<button mat-raised-button disabled>Disabled</button>
+<div class="container-fluid">
+    <br>
+    <div style="text-align: center;">
+        <h1>Text Eccryption</h1>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <br>
+    <br>
+    <div class="mainBox">
+
+        <form [formGroup]="textForm" (ngSubmit)="splitText()" id="background">
+            <br>
+            <div fxLayout='row' fxLayoutGap="20px" fxLayoutAlign="center center">
+                <div class="attribute" fxFlex="40">
+                    <div style=" margin: auto;  width: 80%;">
+                        <label for="totalShare">Total number of shares &nbsp;</label>
+                        <input type="number" placeholder="The number of shares" formControlName="totalShare"
+                            [readonly]="received">
+                    </div>
+                    <div *ngIf="totalShare.touched && !totalShare.valid; else largerThan0">
+                        <div class="alert alert-danger" *ngIf="totalShare.errors.required">Number of share is required
+                        </div>
+                    </div>
+                    <ng-template #largerThan0>
+                        <div class="alert alert-danger"
+                            *ngIf="totalShare.touched &&(textForm.get('totalShare').value<1)">Number of share must be
+                            positive</div>
+                    </ng-template>
+                </div>
+                <div class="attribute" fxFlex="40">
+                    <div style=" margin: auto;  width: 80%;">
+                        <label for="threshold">Threshold &nbsp;</label>
+                        <input type="number" placeholder="Number of share need for recovery" formControlName="threshold"
+                            [readonly]="received">
+                    </div>
+                    <div *ngIf="threshold.touched && !threshold.valid; else checkRange">
+
+                        <div class="alert alert-danger">Threshold is required</div>
+                    </div>
+                    <ng-template #checkRange>
+                        <div class="alert alert-danger"
+                            *ngIf="threshold.touched &&(textForm.get('threshold').value>textForm.get('totalShare').value||textForm.get('threshold').value<1)">
+                            Threshold value invalid</div>
+                    </ng-template>
+                </div>
+            </div>
+            <br>
+            <div class="attribute ">
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="10"
+                    cdkAutosizeMaxRows="25" formControlName="secret"
+                    style="font-size: 12;width: 80%;border-style: inset; margin-left: 10%;"
+                    [readonly]="received"> </textarea>
+                <div *ngIf="secret.touched && !secret.valid">
+                    <div class="alert alert-danger  ">Secret cannot be nothing</div>
+                </div>
+                <br>
+            </div>
+            <br><br>
+
+
+            <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
+                [disabled]="textForm.invalid" fxLayoutAlign="space-evenly none"
+                *ngIf="!this.received;else Sharereceive">Split</button>
+            <ng-template #Sharereceive>
+                <button type="button" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
+                    fxLayoutAlign="space-evenly none" [cdkCopyToClipboard]="this.textForm.get('secret').value" (click)="isClick()">{{clipboard}}</button>
+            </ng-template>
+            <br>
+
+        </form>
+
+    </div>
+</div>
