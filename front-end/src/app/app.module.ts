@@ -10,8 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {TextEncrytionModule} from './modules/text-encrytion/text-encrytion.module'
 import {TextRecoveryModule} from './modules/text-recovery/text-recovery.module'
 import {HomepageModule} from './modules/homepage/homepage.module'
-
-
+import {ImageEncryptionModule} from './modules/image-encryption/image-encryption.module'
+import {ImageRecoveryModule} from './modules/image-recovery/image-recovery.module'
 // import { MatButtonModule } from '@angular/material/button';
 
 
@@ -29,7 +29,9 @@ import {HomepageModule} from './modules/homepage/homepage.module'
     BrowserAnimationsModule,
     HomepageModule,
     TextEncrytionModule,
-    TextRecoveryModule
+    TextRecoveryModule,
+    ImageEncryptionModule,
+    ImageRecoveryModule
  
   ],
   providers: [FypBackendService],

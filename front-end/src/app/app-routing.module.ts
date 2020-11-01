@@ -19,9 +19,22 @@ const routes: Routes = [
         loadChildren: './modules/text-encrytion/text-encrytion.module#TextEncrytionModule'
         // component:TextEncryptionComponent
 
-      },      {
+      }, 
+      {
         path: 'text-recovery',
         loadChildren: './modules/text-recovery/text-recovery.module#TextRecoveryModule'
+        // component:TextRecoveryComponent
+
+      },
+      {
+        path: 'image-ecnryption',
+        loadChildren: './modules/image-encryption/image-encryption.module#ImageEncryptionModule'
+        // component:TextRecoveryComponent
+
+      },
+      {
+        path: 'image-recovery',
+        loadChildren: './modules/image-recovery/image-recovery.module#ImageRecoveryModule'
         // component:TextRecoveryComponent
 
       },
