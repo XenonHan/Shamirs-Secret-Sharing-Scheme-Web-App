@@ -1,4 +1,5 @@
-hello dudes, here is some command you may want to know:
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Important: pull before you code and push after it to avoid conflict; Avoid push to master directly..` 
+
 
 # complile the angular project
  npm install
