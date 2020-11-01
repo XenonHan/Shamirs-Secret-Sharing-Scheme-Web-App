@@ -36,4 +36,27 @@ export class FypBackendService {
     }));
   }
 
+  imageEncryption(image:File,n:number,t:number): Observable<any> {
+    let data = new FormData();
+    data.append('image', image);
+    return this.http.post(this.apiUrl+'/ImageApi/encryption/'+n+'/'+t, data, {
+      observe: 'response'
+    }).pipe(map(res => {
+      return res.body;
+    }, error => {
+      return error;
+    }));
+  }
+
+  imageRecovery(payload: any,  t:number): Observable<any> {
+    console.log(payload);
+    return this.http.post(this.apiUrl+'/ImageApi/recovery/'+t, payload, {
+      observe: 'response'
+    }).pipe(map(res => {
+      return res.body;
+    }, error => {
+      return error;
+    }));
+  }
+
 }

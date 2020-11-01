@@ -1,6 +1,4 @@
-<p>image-encryption works!</p>
-
-<!-- <div class="container-fluid">
+<div class="container-fluid">
     <br>
     <div style="text-align: center;">
         <h1>Image Eccryption</h1>
@@ -12,7 +10,7 @@
     <br>
     <div class="mainBox">
 
-        <form [formGroup]="textForm" (ngSubmit)="splitText()" id="background">
+        <form [formGroup]="imageForm" (ngSubmit)="splitText()" id="background">
             <br>
             <div fxLayout='row' fxLayoutGap="20px" fxLayoutAlign="center center">
                 <div class="attribute" fxFlex="40">
@@ -27,7 +25,7 @@
                     </div>
                     <ng-template #largerThan0>
                         <div class="alert alert-danger"
-                            *ngIf="totalShare.touched &&(textForm.get('totalShare').value<1)">Number of share must be
+                            *ngIf="totalShare.touched &&(imageForm.get('totalShare').value<1)">Number of share must be
                             positive</div>
                     </ng-template>
                 </div>
@@ -43,35 +41,53 @@
                     </div>
                     <ng-template #checkRange>
                         <div class="alert alert-danger"
-                            *ngIf="threshold.touched &&(textForm.get('threshold').value>textForm.get('totalShare').value||textForm.get('threshold').value<1)">
+                            *ngIf="threshold.touched &&(imageForm.get('threshold').value>imageForm.get('totalShare').value||imageForm.get('threshold').value<1)">
                             Threshold value invalid</div>
                     </ng-template>
                 </div>
             </div>
             <br>
-            <div class="attribute ">
+
+            <div class="attribute " style="margin: auto; text-align:center;" (change)="imageLoad($event)"
+                *ngIf="!readImage">
+                <br><br>
+                <label for="imageInput" style="color: #ADD8E6">
+                    <fa-icon [icon]="faUpload"></fa-icon>
+                    Image Upload
+                </label>
+                <input type="file" id="imageInput" value="Upload image" accept="image/*" style="display: none;">
+            </div>
+            <div *ngIf="readImage" style="margin: auto; text-align:center;">
+                <br>
+                <img src={{imageURL}} style="width: 80%;  ">
+            </div>
+
+
+
+            <div class="attribute " *ngIf="received">
                 <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="10"
                     cdkAutosizeMaxRows="25" formControlName="secret"
                     style="font-size: 12;width: 80%;border-style: inset; margin-left: 10%;"
                     [readonly]="received"> </textarea>
-                <div *ngIf="secret.touched && !secret.valid">
-                    <div class="alert alert-danger  ">Secret cannot be nothing</div>
-                </div>
                 <br>
             </div>
             <br><br>
 
 
             <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
-                [disabled]="textForm.invalid" fxLayoutAlign="space-evenly none"
-                *ngIf="!this.received;else Sharereceive">Split</button>
+                [disabled]="imageForm.invalid" fxLayoutAlign="space-evenly none"
+                *ngIf="!this.received&&!loading;else Sharereceive">Split</button>
+
             <ng-template #Sharereceive>
-                <button type="button" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
-                    fxLayoutAlign="space-evenly none" [cdkCopyToClipboard]="this.textForm.get('secret').value" (click)="isClick()">{{clipboard}}</button>
+                <button *ngIf="loading" type="button" mat-raised-button fxLayoutAlign="space-evenly none"
+                style="background-color:#ADD8E6; ;margin: auto;">Loading...</button>
+                <button *ngIf="!loading" type="button" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
+                    fxLayoutAlign="space-evenly none" [cdkCopyToClipboard]="this.imageForm.get('secret').value"
+                    (click)="isClick()">{{clipboard}}</button>
             </ng-template>
             <br>
 
         </form>
 
     </div>
-</div> -->
+</div>

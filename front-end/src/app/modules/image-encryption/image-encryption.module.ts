@@ -12,6 +12,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [ImageEncryptionComponent],
   imports: [
@@ -26,7 +28,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     ReactiveFormsModule ,
     MatDividerModule,
     FlexLayoutModule,
-    ClipboardModule
+    ClipboardModule,
+    FontAwesomeModule
   ]
 })
 export class ImageEncryptionModule { }
