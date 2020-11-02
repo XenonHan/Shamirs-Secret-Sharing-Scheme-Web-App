@@ -2,7 +2,8 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FypBackendService } from '../../../../fyp-backend.service';
-import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faUpload,faDownload } from '@fortawesome/free-solid-svg-icons';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-image-encryption',
@@ -10,7 +11,9 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./image-encryption.component.scss']
 })
 export class ImageEncryptionComponent implements OnInit {
+  buffer: SafeResourceUrl [];
   loading=false;
+  faDownload=faDownload;
   faUpload = faUpload;
   imageForm: FormGroup;
   received: boolean = false;
@@ -21,6 +24,7 @@ export class ImageEncryptionComponent implements OnInit {
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
+    private sanitizer: DomSanitizer
 
   ) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
@@ -47,18 +51,23 @@ export class ImageEncryptionComponent implements OnInit {
 
   splitText() {
     this.loading=true;
+    let temp:SafeResourceUrl []= new Array(this.imageForm.get('totalShare').value);
     // console.log(this.imageForm.get('totalShare').value + "\n");
     // console.log(this.imageForm.get('threshold').value + "\n");
     // console.log(this.imageForm.get('secret').value + "\n");
-    let buffer: string = '';
     this.FypBackendService.imageEncryption(this.imageFile,this.imageForm.get('totalShare').value,this.imageForm.get('threshold').value).subscribe(res => {
       // console.log(res);
       this.loading=false;
       this.received = true;
       for (let i = 0; i < this.imageForm.get('totalShare').value; i++) {
-        buffer += res["share" + i] + "\n";
+        console.log(this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' +res["share" + i]));
+
+        temp[i] = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' +res["share" + i]);
+        console.log(temp);
       }
-      this.imageForm.controls['secret'].setValue(buffer);
+      // this.imageForm.controls['secret'].setValue(this.buffer);
+      this.buffer=temp;
+      console.log(this.buffer);
       
 
     }, error => {
