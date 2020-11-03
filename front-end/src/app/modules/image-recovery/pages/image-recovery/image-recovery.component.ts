@@ -14,6 +14,7 @@ import { faDownload, faUpload } from '@fortawesome/free-solid-svg-icons';
 export class ImageRecoveryComponent implements OnInit {
 
   buffer: string[];
+  fileType: string;
   checkBuffer: boolean[];
   shareVaild = 0;
   loading = false;
@@ -67,7 +68,7 @@ export class ImageRecoveryComponent implements OnInit {
     this.FypBackendService.imageRecovery(this.imageForm.value, this.imageForm.get('threshold').value).subscribe(res => {
       // console.log(res["secret"]);
 
-      this.image = this.urlMaker.bypassSecurityTrustResourceUrl('data:image/png;base64,' + res["secret"]);
+      this.image = this.urlMaker.bypassSecurityTrustResourceUrl('data:' + this.fileType + ';base64,' + res["secret"]);
 
       // console.log(this.image);
       // console.log(this.image);
@@ -93,16 +94,21 @@ export class ImageRecoveryComponent implements OnInit {
 
     if (image === null)
       return;
+
+    if (i === 0)
+      this.fileType = (image.target.files)[0].type;
+    console.log(this.fileType);
     const imageReader = new FileReader();
     // this.imageFile = (image.target.files)[0];
     imageReader.readAsDataURL((image.target.files)[0]);
     let tempBuffer: string;
+    let removeSuffix: string = "data:" + this.fileType + ";base64,";
 
     //read the image from the file reader as a temporary url
     imageReader.onload = (res) => {
       // this.buffer[i] = String.fromCharCode.apply(imageReader.result).replace(/data:image\/png;base64,/, '');
       tempBuffer = (imageReader.result as string);
-      this.buffer[i] = tempBuffer.replace(/data:image\/png;base64,/, '') //this is use to remove the type suffix
+      this.buffer[i] = tempBuffer.replace(removeSuffix, '') //this is use to remove the type suffix /data:image\/jpeg;base64,/
       // console.log(tempBuffer);
       // console.log(this.buffer[i]);
       this.checkBuffer[i] = true;
@@ -115,6 +121,9 @@ export class ImageRecoveryComponent implements OnInit {
     this.shareVaild++;
     if (this.shareVaild === this.imageForm.get('threshold').value)
       this.imageForm.controls['secret'].setValue(i);
+
+    if (i === 0)
+      this.fileType = (image.target.files)[0].type;
 
 
     // this.readImage = true;

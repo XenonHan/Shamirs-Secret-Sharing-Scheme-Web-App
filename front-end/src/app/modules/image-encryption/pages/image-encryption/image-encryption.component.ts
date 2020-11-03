@@ -13,6 +13,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class ImageEncryptionComponent implements OnInit {
   buffer: SafeResourceUrl [];
   loading=false;
+  fileType:string;
   faDownload=faDownload;
   faUpload = faUpload;
   imageForm: FormGroup;
@@ -62,8 +63,8 @@ export class ImageEncryptionComponent implements OnInit {
       for (let i = 0; i < this.imageForm.get('totalShare').value; i++) {
         // console.log(this.urlMaker.bypassSecurityTrustResourceUrl('data:image/png;base64,' +res["share" + i]));
 
-        temp[i] = this.urlMaker.bypassSecurityTrustResourceUrl('data:image/png;base64,' +res["share" + i]);
-        console.log(temp);
+        temp[i] = this.urlMaker.bypassSecurityTrustResourceUrl('data:'+this.fileType+';base64,' +res["share" + i]);
+        // console.log(temp);
       }
       // this.imageForm.controls['secret'].setValue(this.buffer);
       this.buffer=temp;
@@ -94,7 +95,8 @@ export class ImageEncryptionComponent implements OnInit {
     }
     this.imageForm.controls['secret'].setValue(1); //make the vaild pass that allow split button
     console.log("image uploaded");
-
+    // console.log((image.target.files)[0].type);
+    this.fileType=(image.target.files)[0].type;
     this.readImage = true;
   }
 
