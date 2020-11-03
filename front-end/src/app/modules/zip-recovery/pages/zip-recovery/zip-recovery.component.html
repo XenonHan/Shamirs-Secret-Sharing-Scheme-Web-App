@@ -1,0 +1,93 @@
+<div class="container-fluid">
+    <br>
+    <div style="text-align: center;">
+        <h1>Zip file Recovery</h1>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <br>
+    <br>
+    <div class="mainBox">
+
+        <form [formGroup]="zipForm" (ngSubmit)="recoveryText()" id="background">
+            <br>
+            <div fxLayout='row' fxLayoutGap="20px" fxLayoutAlign="center center">
+
+                <div class="attribute" fxFlex="40">
+                    <div style=" margin: auto;  width: 80%;">
+                        <label for="threshold">Threshold &nbsp;</label>
+                        <input type="number" placeholder="threshold number" formControlName="threshold"
+                            [readonly]="received" (change)="isChange()">
+                    </div>
+                    <div *ngIf="threshold.touched && !threshold.valid; else checkRange">
+
+                        <div class="alert alert-danger">Threshold is required</div>
+                    </div>
+                    <ng-template #checkRange>
+                        <div class="alert alert-danger"
+                            *ngIf="threshold.touched &&(zipForm.get('threshold').value<1)">
+                            Threshold value invalid</div>
+                    </ng-template>
+                </div>
+            </div>
+            <br>
+            <!-- <div class="attribute " *ngIf="!received">
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="10"
+                    cdkAutosizeMaxRows="25" formControlName="secret"
+                    style="font-size: 12;width: 80%;border-style: inset; margin-left: 10%;"> </textarea>
+                <div *ngIf="secret.touched && !secret.valid">
+                    <div class="alert alert-danger  ">You need to input secret(s)</div>
+                </div>
+                <br>
+            </div> -->
+            <br>
+            <div class="attribute " *ngIf="!received && zipForm.get('threshold').value>0"
+                style=" text-align: center;">
+                <div class="attribute " *ngFor="let b of buffer; let i=index;" (change)="imageLoad($event, i)">
+
+                    <div *ngIf="checkBuffer[i]!=true" >
+                        <label for="imageInput{{i}}" style="color: #ADD8E6">
+                            <fa-icon [icon]="faUpload"></fa-icon>
+                            Upload share {{i}} 
+                        </label>
+                        <input type="file" id="imageInput{{i}}" value="Upload image" accept=".zip" style="display: none;">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div *ngIf="received" style="margin: auto; text-align:center;">
+
+                <br>
+                <!-- <img [src]="image" style="width: 80%;  " download> -->
+                <h2 style="color: #ADD8E6">Zip file ready</h2>
+                <fa-icon [icon]="faCheckCircle" style="color: chartreuse;"></fa-icon>
+            </div>
+            <br><br>
+
+
+            <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
+                [disabled]="zipForm.invalid" fxLayoutAlign="space-evenly none"
+                *ngIf="!this.received && !loading;else Sharereceive">Recovery</button>
+
+            <br>
+            <ng-template #Sharereceive>
+
+                <button *ngIf="loading" type="button" mat-raised-button fxLayoutAlign="space-evenly none"
+                    style="background-color:#ADD8E6; ;margin: auto;">Loading...</button>
+                <br>
+                <div *ngIf="!loading" style="text-align:center; color: #ADD8E6">
+                    <fa-icon [icon]="faDownload"></fa-icon>
+                    <a [href]="image" download="secret" style="color: #ADD8E6;">
+                        Download
+                    </a>
+                </div>
+            </ng-template>
+            <br>
+
+        </form>
+
+    </div>
+</div>

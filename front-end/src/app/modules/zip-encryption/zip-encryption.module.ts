@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ImageEncryptionRoutingModule } from './image-encryption-routing.module';
-import { ImageEncryptionComponent } from './pages/image-encryption/image-encryption.component';
+import { ZipEncryptionRoutingModule } from './zip-encryption-routing.module';
+import { ZipEncryptionComponent } from './pages/zip-encryption/zip-encryption.component';
+
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,11 +16,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+
 @NgModule({
-  declarations: [ImageEncryptionComponent],
+  declarations: [ZipEncryptionComponent],
   imports: [
     CommonModule,
-    ImageEncryptionRoutingModule,
+    ZipEncryptionRoutingModule,
     MatButtonModule,
     TextFieldModule,
     MatFormFieldModule,
@@ -31,4 +34,4 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule
   ]
 })
-export class ImageEncryptionModule { }
+export class ZipEncryptionModule { }

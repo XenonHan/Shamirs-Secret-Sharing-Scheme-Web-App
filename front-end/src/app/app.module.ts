@@ -12,6 +12,8 @@ import {TextRecoveryModule} from './modules/text-recovery/text-recovery.module'
 import {HomepageModule} from './modules/homepage/homepage.module'
 import {ImageEncryptionModule} from './modules/image-encryption/image-encryption.module'
 import {ImageRecoveryModule} from './modules/image-recovery/image-recovery.module'
+import {ZipEncryptionModule} from './modules/zip-encryption/zip-encryption.module'
+import {ZipRecoveryModule} from './modules/zip-recovery/zip-recovery.module'
 // import { MatButtonModule } from '@angular/material/button';
 
 
@@ -31,7 +33,9 @@ import {ImageRecoveryModule} from './modules/image-recovery/image-recovery.modul
     TextEncrytionModule,
     TextRecoveryModule,
     ImageEncryptionModule,
-    ImageRecoveryModule
+    ImageRecoveryModule,
+    ZipEncryptionModule,
+    ZipRecoveryModule
  
   ],
   providers: [FypBackendService],

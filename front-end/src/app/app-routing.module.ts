@@ -38,6 +38,18 @@ const routes: Routes = [
         // component:TextRecoveryComponent
 
       },
+      {
+        path: 'zip-ecnryption',
+        loadChildren: './modules/zip-encryption/zip-encryption.module#ZipEncryptionModule'
+        // component:TextRecoveryComponent
+
+      },
+      {
+        path: 'zip-recovery',
+        loadChildren: './modules/zip-recovery/zip-recovery.module#ZipRecoveryModule'
+        // component:TextRecoveryComponent
+
+      },
     ]
   },
 ];

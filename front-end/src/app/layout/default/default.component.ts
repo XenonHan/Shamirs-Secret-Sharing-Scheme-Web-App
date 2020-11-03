@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {faFileWord,faHome,faLock,faImages,faFileImage } from '@fortawesome/free-solid-svg-icons';
+import {faFileWord,faHome,faLock,faImages,faFileImage,faClone,faFileArchive } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
@@ -7,6 +7,8 @@ import {faFileWord,faHome,faLock,faImages,faFileImage } from '@fortawesome/free-
 })
 export class DefaultComponent implements OnInit {
   faFileWord = faFileWord;
+  faClone=faClone;
+  faFileArchive=faFileArchive;
   faLock=faLock;
   faHome=faHome;
   faImages=faImages;
