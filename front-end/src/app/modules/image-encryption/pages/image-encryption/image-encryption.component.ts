@@ -24,7 +24,7 @@ export class ImageEncryptionComponent implements OnInit {
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
-    private sanitizer: DomSanitizer
+    private urlMaker: DomSanitizer
 
   ) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
@@ -60,14 +60,14 @@ export class ImageEncryptionComponent implements OnInit {
       this.loading=false;
       this.received = true;
       for (let i = 0; i < this.imageForm.get('totalShare').value; i++) {
-        console.log(this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' +res["share" + i]));
+        // console.log(this.urlMaker.bypassSecurityTrustResourceUrl('data:image/png;base64,' +res["share" + i]));
 
-        temp[i] = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' +res["share" + i]);
+        temp[i] = this.urlMaker.bypassSecurityTrustResourceUrl('data:image/png;base64,' +res["share" + i]);
         console.log(temp);
       }
       // this.imageForm.controls['secret'].setValue(this.buffer);
       this.buffer=temp;
-      console.log(this.buffer);
+      // console.log(this.buffer);
       
 
     }, error => {

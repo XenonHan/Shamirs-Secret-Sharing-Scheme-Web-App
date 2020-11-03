@@ -26,7 +26,7 @@ export class ImageRecoveryComponent implements OnInit {
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
-    private sanitizer: DomSanitizer
+    private urlMaker: DomSanitizer
 
 
   ) { }
@@ -62,12 +62,12 @@ export class ImageRecoveryComponent implements OnInit {
       this.imageForm.addControl("share" + i, new FormControl(this.buffer[i]));
       // shares.set("share"+i,buffer[i]);
     }
-    console.log(this.imageForm.value);
+    // console.log(this.imageForm.value);
 
     this.FypBackendService.imageRecovery(this.imageForm.value, this.imageForm.get('threshold').value).subscribe(res => {
       // console.log(res["secret"]);
 
-      this.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + res["secret"]);
+      this.image = this.urlMaker.bypassSecurityTrustResourceUrl('data:image/png;base64,' + res["secret"]);
 
       // console.log(this.image);
       // console.log(this.image);

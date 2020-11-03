@@ -51,10 +51,10 @@ export class TextRecoveryComponent implements OnInit {
       this.textForm.addControl("share"+i,new FormControl(buffer[i]));
       // shares.set("share"+i,buffer[i]);
     }
-    console.log(this.textForm.value);
+    // console.log(this.textForm.value);
 
     this.FypBackendService.textRecovery( this.textForm.value,this.textForm.get('threshold').value).subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.received=true;
       this.textForm.controls['secret'].setValue(res["secret"]);
 

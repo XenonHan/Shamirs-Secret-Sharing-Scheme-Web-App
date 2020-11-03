@@ -49,7 +49,7 @@ export class FypBackendService {
   }
 
   imageRecovery(payload: any,  t:number): Observable<any> {
-    console.log(payload);
+    // console.log(payload);
     return this.http.post(this.apiUrl+'/ImageApi/recovery/'+t, payload, {
       observe: 'response'
     }).pipe(map(res => {
