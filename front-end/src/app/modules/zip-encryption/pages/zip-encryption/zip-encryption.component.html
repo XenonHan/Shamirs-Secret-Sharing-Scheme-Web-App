@@ -13,11 +13,11 @@
         <form [formGroup]="zipForm" (ngSubmit)="splitText()" id="background">
             <br>
             <div fxLayout='row' fxLayoutGap="20px" fxLayoutAlign="center center">
-                <div class="attribute" fxFlex="40">
-                    <div style=" margin: auto;  width: 80%;">
-                        <label for="totalShare">Total number of shares &nbsp;</label>
-                        <input type="number" placeholder="The number of shares" formControlName="totalShare"
-                            [readonly]="received">
+                <div class="attribute" fxFlex="35">
+                    <div style=" float:right;  width: 80%;">
+                        <label for="totalShare">Total shares &nbsp;</label>
+                        <input type="number" placeholder="Number of shares" formControlName="totalShare"
+                            [readonly]="received" style="width: 50%;">
                     </div>
                     <div *ngIf="totalShare.touched && !totalShare.valid; else largerThan0">
                         <div class="alert alert-danger" *ngIf="totalShare.errors.required">Number of share is required
@@ -29,11 +29,11 @@
                             positive</div>
                     </ng-template>
                 </div>
-                <div class="attribute" fxFlex="40">
+                <div class="attribute" fxFlex="35">
                     <div style=" margin: auto;  width: 80%;">
                         <label for="threshold">Threshold &nbsp;</label>
                         <input type="number" placeholder="threshold number" formControlName="threshold"
-                            [readonly]="received">
+                            [readonly]="received" style="width: 50%;">
                     </div>
                     <div *ngIf="threshold.touched && !threshold.valid; else checkRange">
 

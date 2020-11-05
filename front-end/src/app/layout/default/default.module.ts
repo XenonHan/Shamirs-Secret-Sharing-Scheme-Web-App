@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import {DefaultComponent} from './default.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -14,7 +15,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbModule
   ],
   bootstrap: [DefaultComponent]
 })

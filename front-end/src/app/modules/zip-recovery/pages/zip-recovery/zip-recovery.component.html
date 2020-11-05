@@ -15,9 +15,9 @@
             <div fxLayout='row' fxLayoutGap="20px" fxLayoutAlign="center center">
 
                 <div class="attribute" fxFlex="40">
-                    <div style=" margin: auto;  width: 80%;">
-                        <label for="threshold">Threshold &nbsp;</label>
-                        <input type="number" placeholder="threshold number" formControlName="threshold"
+                    <div style=" float:right;  width: 80%;">
+                        <label for="threshold" >Threshold &nbsp;</label>
+                        <input type="number" style="width: 50%;" placeholder="threshold number" formControlName="threshold"
                             [readonly]="received" (change)="isChange()">
                     </div>
                     <div *ngIf="threshold.touched && !threshold.valid; else checkRange">
@@ -47,7 +47,7 @@
                 <div class="attribute " *ngFor="let b of buffer; let i=index;" (change)="imageLoad($event, i)">
 
                     <div *ngIf="checkBuffer[i]!=true" >
-                        <label for="imageInput{{i}}" style="color: #ADD8E6">
+                        <label for="imageInput{{i}}" style="color: #ADD8E6 ">
                             <fa-icon [icon]="faUpload"></fa-icon>
                             Upload share {{i}} 
                         </label>
