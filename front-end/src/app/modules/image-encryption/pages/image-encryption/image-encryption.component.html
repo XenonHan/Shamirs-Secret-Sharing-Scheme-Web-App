@@ -32,7 +32,7 @@
                 <div class="attribute" fxFlex="35">
                     <div style=" margin: auto;  width: 80%;">
                         <label for="threshold">Threshold &nbsp;</label>
-                        <input type="number" placeholder="threshold number" formControlName="threshold"
+                        <input type="number" placeholder="Threshold number" formControlName="threshold"
                             [readonly]="received" style="width: 50%;">
                     </div>
                     <div *ngIf="threshold.touched && !threshold.valid; else checkRange">

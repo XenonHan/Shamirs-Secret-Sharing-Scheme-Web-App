@@ -17,7 +17,7 @@
                 <div class="attribute" fxFlex="40">
                     <div style=" float:right;  width: 80%;">
                         <label for="threshold" >Threshold &nbsp;</label>
-                        <input type="number" style="width: 50%;" placeholder="threshold number" formControlName="threshold"
+                        <input type="number" style="width: 50%;" placeholder="Threshold number" formControlName="threshold"
                             [readonly]="received" (change)="isChange()">
                     </div>
                     <div *ngIf="threshold.touched && !threshold.valid; else checkRange">
