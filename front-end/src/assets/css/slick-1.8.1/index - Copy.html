@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OUHK</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+  <style type="text/css">
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+        width: 50%;
+        margin: 100px auto;
+    }
+
+    .slick-slide {
+      margin: 0px 20px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      color: black;
+    }
+
+
+    .slick-slide {
+      transition: all ease-in-out .3s;
+      opacity: .2;
+    }
+    
+    .slick-active {
+      opacity: .5;
+    }
+
+    .slick-current {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="lazy slider" data-sizes="50vw">
+    <div>
+		<table>
+                    <tr>
+                        <td>
+                            <h1>What is "Secret Sharing"?</h1>
+                            <p>
+                                In cryptograph, secret sharing refers to any method for distributing a
+                                secret among a group of participants, each of which allocates a share of the secret.
+                                The secret can only be reconstructed when the shares are combined together;
+                                individual shares are of no use on their own.
+                            </p>
+                            <p>
+                                The secret is opened only when specific conditions are fulfilled.
+                                 Each of n participants is given a number of share, and any group 
+                                 of t (threshold) or more shares together can open the secret but no group of less than t shares can.
+                            </p>
+                            <p>
+                                A secure secret sharing scheme distributes shares so that anyone with fewer than t shares has no more 
+                                information about the secret than someone with 0 shares. Consider the naive secret sharing scheme in which 
+                                the secret phrase "password" is divided into the shares "pa------," "--ss----," "----wo--," and "------rd,". 
+                                A person with 0 shares knows only that the password consists of eight letters. He would have to guess the password 
+                                from 268 = 208 billion possible combinations. A person with one share, however, would have to guess only the six letters 
+                                from 266 = 308 million combinations. This system is not a secure secret sharing scheme, because a player with less than t 
+                                shares gains significant information about the content of the secret. In a secure scheme, even a player missing only one 
+                                share should still face 268 = 208 billion combinations.
+                            </p>
+                        </td>
+                    </tr>
+                </table>    
+
+
+
+
+
+	</div>
+    <div>
+		<table>
+                    <tr>
+                        <td>
+                            <h1>What is "SSSS"?</h1>
+                            <iframe src="https://www.youtube.com/embed/2pad1qbu_L0"></iframe>           
+                        </td>
+                    </tr>
+                </table>
+
+	</div>
+
+  </section>
+
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+  <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(document).on('ready', function() {
+      $(".lazy").slick({
+        lazyLoad: 'ondemand', // ondemand progressive anticipated
+        infinite: true
+      });
+    });
+</script>
+
+</body>
+</html>
