@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+
 declare var $: any;
 
 @Component({
@@ -7,7 +9,7 @@ declare var $: any;
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-
+  faChevronCircleDown=faChevronCircleDown;
   constructor() { }
 
   ngOnInit(): void {
