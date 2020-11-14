@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FypBackendService } from './fyp-backend.service';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultModule } from './layout/default/default.module';
@@ -35,7 +35,9 @@ import {ZipRecoveryModule} from './modules/zip-recovery/zip-recovery.module'
     ImageEncryptionModule,
     ImageRecoveryModule,
     ZipEncryptionModule,
-    ZipRecoveryModule
+    ZipRecoveryModule,
+    SlickCarouselModule
+    
  
   ],
   providers: [FypBackendService],

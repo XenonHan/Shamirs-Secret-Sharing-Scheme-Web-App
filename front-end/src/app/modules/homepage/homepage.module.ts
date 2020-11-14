@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { HomepageRoutingModule } from './homepage-routing.module';
 import { HomepageComponent } from './pages/homepage/homepage.component';
@@ -9,7 +10,8 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
   declarations: [HomepageComponent],
   imports: [
     CommonModule,
-    HomepageRoutingModule
+    HomepageRoutingModule,
+    SlickCarouselModule
   ]
 })
 export class HomepageModule { }

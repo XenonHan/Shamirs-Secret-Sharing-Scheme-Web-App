@@ -30,14 +30,13 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
-              "src/assets/css/slick-1.8.1/slick/slick.css",
               "src/assets/css/fontawesome-5.5/css/all.min.css",
-              "src/assets/css/slick-1.8.1/slick/slick-theme.css"
+              "./node_modules/slick-carousel/slick/slick.scss",
+              "./node_modules/slick-carousel/slick/slick-theme.scss"
             ],
             "scripts": [
               "src/assets/css/jquery-2.0.0.min.js",
-              "src/assets/css/slick-1.8.1/slick/slick.js",
-              "src/assets/css/homepage.js"
+              "./node_modules/slick-carousel/slick/slick.min.js"
             ]
           },
           "configurations": {

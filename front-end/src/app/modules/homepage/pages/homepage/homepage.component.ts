@@ -13,4 +13,11 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  slideConfig = {"slidesToShow": 1, "slidesToScroll": 1, "dots": true, "arrows": true};
+
+  slides = [
+    {img: "http://placehold.it/350x150/000000"}
+  ];
+
 }
+
