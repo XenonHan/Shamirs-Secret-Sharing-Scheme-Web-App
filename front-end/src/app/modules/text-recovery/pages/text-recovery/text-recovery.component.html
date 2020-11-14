@@ -18,7 +18,7 @@
                     <div style=" text-align: right;  width: 80%;">
                         <label for="threshold">Threshold &nbsp;</label>
                         <input type="number" placeholder="Threshold number" formControlName="threshold"
-                            [readonly]="received" style="width: 50%;">
+                            [readonly]="received" style="width: 50%;" (change)="isChange()">
                     </div>
                     <div *ngIf="threshold.touched && !threshold.valid; else checkRange">
 
@@ -32,15 +32,30 @@
                 </div>
             </div>
             <br>
-            <div class="attribute ">
+            <div class="attribute " *ngIf="received">
                 <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="10"
                     cdkAutosizeMaxRows="25" formControlName="secret"
                     style="font-size: 12;width: 80%;border-style: inset; margin-left: 10%;"
-                    [readonly]="received"> </textarea>
+                    readonly> </textarea>
                 <div *ngIf="secret.touched && !secret.valid">
                     <div class="alert alert-danger  ">You need to input secret(s)</div>
                 </div>
                 <br>
+            </div>
+            <div class="attribute " *ngIf="!received && textForm.get('threshold').value>0"
+                style=" text-align: center;">
+                <div class="attribute " *ngFor="let b of buffer; let i=index;" (change)="textLoad($event, i)">
+
+                    <div *ngIf="checkBuffer[i]!=true" >
+                        <label for="textInput{{i}}" style="color: #ADD8E6">
+                            <fa-icon [icon]="faUpload"></fa-icon>
+                            Upload share {{i}} 
+                        </label>
+                        <input type="file" id="textInput{{i}}" value="Upload text" accept="text/plain" style="display: none;">
+                    </div>
+
+                </div>
+
             </div>
             <br><br>
 

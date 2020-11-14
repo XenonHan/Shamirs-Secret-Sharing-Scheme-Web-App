@@ -59,14 +59,27 @@
             </div>
             <br><br>
 
+            <div *ngIf="received"  style=" text-align: center;">
+                <div class="attribute " *ngFor="let b of buffer; index as i;">
+
+                    <fa-icon [icon]="faDownload"></fa-icon>
+                    <a [href]="b" download="share{{i}}" style="color: #ADD8E6;">
+                        Download share {{i}}
+                    </a>
+
+
+                </div>
+            </div>
+
 
             <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
                 [disabled]="textForm.invalid" fxLayoutAlign="space-evenly none"
-                *ngIf="!this.received;else Sharereceive">Split</button>
-            <ng-template #Sharereceive>
+                *ngIf="!this.received;">Split</button>
+                <!-- else Sharereceive -->
+            <!-- <ng-template #Sharereceive>
                 <button type="button" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
                     fxLayoutAlign="space-evenly none" [cdkCopyToClipboard]="this.textForm.get('secret').value" (click)="isClick()">{{clipboard}}</button>
-            </ng-template>
+            </ng-template> -->
             <br>
 
         </form>
