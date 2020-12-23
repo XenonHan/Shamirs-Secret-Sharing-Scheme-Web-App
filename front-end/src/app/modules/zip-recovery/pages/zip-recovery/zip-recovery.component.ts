@@ -65,7 +65,7 @@ export class ZipRecoveryComponent implements OnInit {
     }
     // console.log(this.zipForm.value);
 
-    this.FypBackendService.imageRecovery(this.zipForm.value, this.zipForm.get('threshold').value).subscribe(res => {
+    this.FypBackendService.zipRecovery(this.zipForm.value, this.zipForm.get('threshold').value).subscribe(res => {
       // console.log(res["secret"]);
 
       this.image = this.urlMaker.bypassSecurityTrustResourceUrl('data:' + this.fileType + ';base64,' + res["secret"]);

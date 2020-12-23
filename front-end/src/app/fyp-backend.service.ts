@@ -59,4 +59,27 @@ export class FypBackendService {
     }));
   }
 
+  zipEncryption(image:File,n:number,t:number): Observable<any> {
+    let data = new FormData();
+    data.append('image', image);
+    return this.http.post(this.apiUrl+'/ZipApi/encryption/'+n+'/'+t, data, {
+      observe: 'response'
+    }).pipe(map(res => {
+      return res.body;
+    }, error => {
+      return error;
+    }));
+  }
+
+  zipRecovery(payload: any,  t:number): Observable<any> {
+    // console.log(payload);
+    return this.http.post(this.apiUrl+'/ZipApi/recovery/'+t, payload, {
+      observe: 'response'
+    }).pipe(map(res => {
+      return res.body;
+    }, error => {
+      return error;
+    }));
+  }
+
 }
