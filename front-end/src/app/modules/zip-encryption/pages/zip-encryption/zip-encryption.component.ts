@@ -21,7 +21,8 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
   readImage: boolean = false;
   imageFile: File;
   imageURL: string | ArrayBuffer;
-  clipboard = "Copy to clipboard"
+  tooLarge: boolean=false;
+  // clipboard = "Copy to clipboard"
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
@@ -77,9 +78,9 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
     });
   }
 
-  isClick() {
-    this.clipboard = "Copied!"
-  }
+  // isClick() {
+  //   this.clipboard = "Copied!"
+  // }
 
   imageLoad(image: any) {
 
@@ -88,13 +89,21 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
     const imageReader = new FileReader();
     this.imageFile = (image.target.files)[0];
     imageReader.readAsDataURL(this.imageFile);
+    console.log(this.imageFile.size);
 
+    //the file size shoud <= 15MB
+    this.tooLarge=false;
+    if(this.imageFile.size>15728640)
+    {
+      this.tooLarge=true;
+      return;
+    }
     //read the image from the file reader as a temporary url
     imageReader.onload = (res) => {
       this.imageURL = imageReader.result;
     }
     this.zipForm.controls['secret'].setValue(1); //make the vaild pass that allow split button
-    console.log("image uploaded");
+    // console.log("zip uploaded");
     // console.log((image.target.files)[0].type);
     this.fileType=(image.target.files)[0].type;
     this.readImage = true;

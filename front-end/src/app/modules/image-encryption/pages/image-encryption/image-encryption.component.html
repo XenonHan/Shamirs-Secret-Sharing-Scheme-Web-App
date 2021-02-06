@@ -19,6 +19,9 @@
                         <input type="number" placeholder="Number of shares" formControlName="totalShare"
                             [readonly]="received" style="width: 50%;">
                     </div>
+                    <div class="alert alert-danger" *ngIf="totalShare.touched &&(imageForm.get('totalShare').value>20)">
+                        Max. 20 shares are allowed
+                    </div>
                     <div *ngIf="totalShare.touched && !totalShare.valid; else largerThan0">
                         <div class="alert alert-danger" *ngIf="totalShare.errors.required">Number of share is required
                         </div>
@@ -87,7 +90,7 @@
 
 
             <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
-                [disabled]="imageForm.invalid" fxLayoutAlign="space-evenly none"
+                [disabled]="imageForm.invalid||(threshold.touched &&(imageForm.get('threshold').value>imageForm.get('totalShare').value||imageForm.get('threshold').value<1)||(imageForm.get('totalShare').value>20))" fxLayoutAlign="space-evenly none"
                 *ngIf="!this.received&&!loading;else Sharereceive">Split</button>
 
             <ng-template #Sharereceive>

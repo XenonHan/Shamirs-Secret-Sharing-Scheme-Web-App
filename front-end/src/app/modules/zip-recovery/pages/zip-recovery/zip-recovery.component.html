@@ -57,6 +57,10 @@
                 </div>
 
             </div>
+            <div *ngIf="tooLarge">
+                <div class="alert alert-danger" >Please make sure you are uploading zip share(s)
+                </div>
+            </div>
 
             <div *ngIf="received" style="margin: auto; text-align:center;">
 

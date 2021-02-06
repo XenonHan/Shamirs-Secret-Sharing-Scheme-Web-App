@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FypBackendService } from '../../../../fyp-backend.service';
-import { faDownload, faUpload,faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faUpload, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-zip-recovery',
@@ -13,7 +13,7 @@ import { faDownload, faUpload,faCheckCircle } from '@fortawesome/free-solid-svg-
 export class ZipRecoveryComponent implements OnInit {
 
   buffer: string[];
-  faCheckCircle=faCheckCircle;
+  faCheckCircle = faCheckCircle;
   fileType: string;
   checkBuffer: boolean[];
   shareVaild = 0;
@@ -23,7 +23,8 @@ export class ZipRecoveryComponent implements OnInit {
   image: SafeResourceUrl;
   zipForm: FormGroup;
   received: boolean = false;
-  clipboard = "Copy to clipboard"
+  tooLarge: boolean = false;
+  // clipboard = "Copy to clipboard"
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
@@ -95,6 +96,15 @@ export class ZipRecoveryComponent implements OnInit {
     if (image === null)
       return;
 
+      // console.log((image.target.files)[0].size );
+
+    //15MB + 1B for store the x value
+    this.tooLarge = false;
+    if ((image.target.files)[0].size > 15728640) {
+      this.tooLarge = true;
+      return;
+    }
+
     if (i === 0)
       this.fileType = (image.target.files)[0].type;
     console.log(this.fileType);
@@ -110,14 +120,14 @@ export class ZipRecoveryComponent implements OnInit {
       tempBuffer = (imageReader.result as string);
       this.buffer[i] = tempBuffer.replace(removeSuffix, '') //this is use to remove the type suffix /data:image\/jpeg;base64,/
       // console.log(tempBuffer);
-      // console.log(this.buffer[i]);
+      // console.log(this.buffer[i].length);
       this.checkBuffer[i] = true;
     }
 
 
     // this.buffer[i] = (image.target.files)[0];
     // this.zipForm.controls['secret'].setValue(i); //make the vaild pass that allow split button
-    console.log("image " + i + " uploaded");
+    // console.log("zip share " + i + " uploaded");
     this.shareVaild++;
     if (this.shareVaild === this.zipForm.get('threshold').value)
       this.zipForm.controls['secret'].setValue(i);
