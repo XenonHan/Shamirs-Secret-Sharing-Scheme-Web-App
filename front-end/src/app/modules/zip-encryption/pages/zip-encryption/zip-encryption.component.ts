@@ -90,16 +90,17 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
     const imageReader = new FileReader();
     this.imageFile = (image.target.files)[0];
     imageReader.readAsDataURL(this.imageFile);
-    console.log(this.imageFile.size);
+    // console.log(this.imageFile.size);
 
     //the file size shoud <= 15MB
+    this.checkFinal=this.imageFile.size;
     this.tooLarge=false;
     if(this.imageFile.size>15728640)
     {
       this.tooLarge=true;
       return;
     }
-    this.checkFinal=this.imageFile.size;
+   
     //read the image from the file reader as a temporary url
     imageReader.onload = (res) => {
       this.imageURL = imageReader.result;

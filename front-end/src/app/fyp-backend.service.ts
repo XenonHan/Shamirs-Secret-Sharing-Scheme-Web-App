@@ -62,7 +62,7 @@ export class FypBackendService {
 
   zipEncryption(finalCheck, image: File, n: number, t: number): Observable<any> {
     if (finalCheck > 15728640) {
-      console.log("true");
+      // console.log("true");
       throw new Error("invalid zip file size");
     }
 
