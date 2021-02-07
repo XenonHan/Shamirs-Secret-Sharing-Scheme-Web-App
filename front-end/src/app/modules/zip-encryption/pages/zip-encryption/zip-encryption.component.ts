@@ -22,6 +22,7 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
   imageFile: File;
   imageURL: string | ArrayBuffer;
   tooLarge: boolean=false;
+  checkFinal:number;
   // clipboard = "Copy to clipboard"
   constructor(
     private FypBackendService: FypBackendService,
@@ -57,7 +58,7 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
     // console.log(this.zipForm.get('totalShare').value + "\n");
     // console.log(this.zipForm.get('threshold').value + "\n");
     // console.log(this.zipForm.get('secret').value + "\n");
-    this.FypBackendService.zipEncryption(this.imageFile,this.zipForm.get('totalShare').value,this.zipForm.get('threshold').value).subscribe(res => {
+    this.FypBackendService.zipEncryption(this.checkFinal,this.imageFile,this.zipForm.get('totalShare').value,this.zipForm.get('threshold').value).subscribe(res => {
       // console.log(res);
       this.loading=false;
       this.received = true;
@@ -98,6 +99,7 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
       this.tooLarge=true;
       return;
     }
+    this.checkFinal=this.imageFile.size;
     //read the image from the file reader as a temporary url
     imageReader.onload = (res) => {
       this.imageURL = imageReader.result;
