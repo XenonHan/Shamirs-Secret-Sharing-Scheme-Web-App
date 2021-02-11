@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { faDownload, faUpload, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-zip-recovery',
@@ -25,10 +26,12 @@ export class ZipRecoveryComponent implements OnInit {
   received: boolean = false;
   tooLarge: boolean = false;
   // clipboard = "Copy to clipboard"
+  desktop = this.deviceType.isDesktop();
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
-    private urlMaker: DomSanitizer
+    private urlMaker: DomSanitizer,
+    private deviceType: DeviceDetectorService,
 
 
   ) { }

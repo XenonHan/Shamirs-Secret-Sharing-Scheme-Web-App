@@ -32,6 +32,7 @@
     "install": "^0.13.0",
     "jquery": "^1.12.4",
     "ng-packagr": "^10.1.2",
+    "ngx-device-detector": "^2.0.5",
     "ngx-slick-carousel": "^0.5.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.5",

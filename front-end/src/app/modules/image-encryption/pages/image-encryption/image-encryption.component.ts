@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { faUpload,faDownload } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DeviceDetectorService } from 'ngx-device-detector';
+
 
 @Component({
   selector: 'app-image-encryption',
@@ -21,11 +23,13 @@ export class ImageEncryptionComponent implements OnInit {
   readImage: boolean = false;
   imageFile: File;
   imageURL: string | ArrayBuffer;
-  clipboard = "Copy to clipboard"
+  clipboard = "Copy to clipboard";
+  desktop = this.deviceType.isDesktop();
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
-    private urlMaker: DomSanitizer
+    private urlMaker: DomSanitizer,
+    private deviceType: DeviceDetectorService
 
   ) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;

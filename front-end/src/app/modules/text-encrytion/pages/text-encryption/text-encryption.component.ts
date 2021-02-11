@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 
 
@@ -17,15 +18,19 @@ export class TextEncryptionComponent implements OnInit {
   buffer: SafeResourceUrl [];
   textForm: FormGroup;
   received:boolean=false;
+  desktop = this.deviceType.isDesktop();
   clipboard="Copy to clipboard"
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
-    private urlMaker: DomSanitizer
+    private urlMaker: DomSanitizer,
+    private deviceType: DeviceDetectorService
 
   ) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
   ngOnInit() {
+    // console.log(this.desktop);
+    // console.log(123);
     this.textForm = this.formBuilder.group(
       {
         threshold: ['', [Validators.required]],

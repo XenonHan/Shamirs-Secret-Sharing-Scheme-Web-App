@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { faDownload, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 
 @Component({
@@ -23,11 +24,13 @@ export class ImageRecoveryComponent implements OnInit {
   image: SafeResourceUrl;
   imageForm: FormGroup;
   received: boolean = false;
-  clipboard = "Copy to clipboard"
+  // clipboard = "Copy to clipboard"
+  desktop = this.deviceType.isDesktop();
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
-    private urlMaker: DomSanitizer
+    private urlMaker: DomSanitizer,
+    private deviceType: DeviceDetectorService,
 
 
   ) { }

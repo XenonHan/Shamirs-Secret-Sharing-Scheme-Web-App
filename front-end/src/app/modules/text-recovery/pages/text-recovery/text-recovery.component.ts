@@ -2,6 +2,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FypBackendService } from '../../../../fyp-backend.service';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 
 @Component({
@@ -18,10 +19,13 @@ export class TextRecoveryComponent implements OnInit {
   checkBuffer: boolean[];
   // shareVaild = 0;
   received:boolean=false;
-  clipboard="Copy to clipboard"
+  clipboard="Copy to clipboard";
+  desktop = this.deviceType.isDesktop();
+  size=60;
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
+    private deviceType: DeviceDetectorService,
 
   ) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;

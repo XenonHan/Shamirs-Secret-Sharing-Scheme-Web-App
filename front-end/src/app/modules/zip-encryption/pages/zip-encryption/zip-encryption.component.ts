@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { faUpload,faDownload,faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-zip-encryption',
@@ -23,11 +24,13 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
   imageURL: string | ArrayBuffer;
   tooLarge: boolean=false;
   checkFinal:number;
+  desktop = this.deviceType.isDesktop();
   // clipboard = "Copy to clipboard"
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
-    private urlMaker: DomSanitizer
+    private urlMaker: DomSanitizer,
+    private deviceType: DeviceDetectorService
 
   ) { }
   @ViewChild('autosize') autosize: CdkTextareaAutosize;

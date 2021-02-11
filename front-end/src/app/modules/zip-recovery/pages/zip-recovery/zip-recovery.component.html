@@ -14,11 +14,11 @@
             <br>
             <div fxLayout='row' fxLayoutGap="20px" fxLayoutAlign="center center">
 
-                <div class="attribute" fxFlex="40">
-                    <div style=" text-align: right;  width: 80%;">
-                        <label for="threshold" >Threshold &nbsp;</label>
-                        <input type="number" style="width: 50%;" placeholder="Threshold number" formControlName="threshold"
-                            [readonly]="received" (change)="isChange()">
+                <div class="attribute" [fxFlex]="desktop?30:60">
+                    <div style=" text-align: center">
+                        <label for="threshold" ><span *ngIf="this.desktop">Threshold &nbsp;</span></label>
+                        <input type="number" [placeholder]="desktop?'Threshold number':'t'" formControlName="threshold"
+                            [readonly]="received" (change)="isChange()" style="width: 50%;">
                     </div>
                     <div *ngIf="threshold.touched && !threshold.valid; else checkRange">
 

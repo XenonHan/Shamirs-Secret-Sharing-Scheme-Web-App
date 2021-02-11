@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light navbar-custom py-2" style="font-size: medium;" >
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom py-2" style="font-size: large;" >
     <img class="navbar-brand" src="../../../assets/logo.png" style="width: auto;height: auto; ">
     <div> &nbsp;&nbsp; </div>
     <button class="navbar-toggler" type="button" style="border: none;font-size: 80%;outline: none;" data-toggle="collapse"
@@ -8,44 +8,44 @@
     <div class="collapse navbar-collapse " id="myBar" [ngbCollapse]="!showBar">
         <ul class="navbar-nav " routerLinkActive="active">
             <li class="nav-item">
-                <a class="nav-link inner" routerLink="/">Home
+                <a class="nav-link inner" routerLink="/" (click)="showBar=!showBar">Home
                     <fa-icon [icon]="faHome"></fa-icon>
                 </a>
 
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link inner" routerLink="/text-ecnryption">Text Ecrytion
+                <a class="nav-link inner" routerLink="/text-ecnryption" (click)="showBar=!showBar">Text Ecrytion
                     <fa-icon [icon]="faLock"></fa-icon>
                 </a>
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link inner" routerLink="/text-recovery">Text Recovery
+                <a class="nav-link inner" routerLink="/text-recovery" (click)="showBar=!showBar">Text Recovery
                     <fa-icon [icon]="faFileWord"></fa-icon>
                 </a>
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link inner" routerLink="/image-ecnryption">Image Encryption
+                <a class="nav-link inner" routerLink="/image-ecnryption" (click)="showBar=!showBar">Image Encryption
                     <fa-icon [icon]="faImages"></fa-icon>
                 </a>
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link inner" routerLink="/image-recovery">Image Recovery
+                <a class="nav-link inner" routerLink="/image-recovery" (click)="showBar=!showBar">Image Recovery
                     <fa-icon [icon]="faFileImage"></fa-icon>
                 </a>
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link inner" routerLink="/zip-ecnryption">Zip Encryption
+                <a class="nav-link inner" routerLink="/zip-ecnryption" (click)="showBar=!showBar">Zip Encryption
                     <fa-icon [icon]="faClone"></fa-icon>
                 </a>
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link inner" routerLink="/zip-recovery">Zip Recovery
+                <a class="nav-link inner" routerLink="/zip-recovery" (click)="showBar=!showBar">Zip Recovery
                     <fa-icon [icon]="faFileArchive"></fa-icon>
                 </a>
             </li>
