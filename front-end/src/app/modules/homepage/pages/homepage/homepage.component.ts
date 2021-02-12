@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 declare var $: any;
 
@@ -10,7 +11,8 @@ declare var $: any;
 })
 export class HomepageComponent implements OnInit {
   faChevronCircleDown=faChevronCircleDown;
-  constructor() { }
+  desktop = this.deviceType.isDesktop();
+  constructor(  private deviceType: DeviceDetectorService) { }
 
   ngOnInit(): void {
   }

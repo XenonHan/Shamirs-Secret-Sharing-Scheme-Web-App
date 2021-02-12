@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { faTimesCircle,faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -14,18 +14,18 @@ import { faTimesCircle,faUpload } from '@fortawesome/free-solid-svg-icons';
 export class TextRecoveryComponent implements OnInit {
 
   textForm: FormGroup;
-  faTimesCircle=faTimesCircle;
-  faUpload=faUpload;
-  recoveryFail:boolean=false;
+  faTimesCircle = faTimesCircle;
+  faUpload = faUpload;
+  recoveryFail: boolean = false;
   // tempSecret:string="";
   shareVaild = 0;
   buffer: string[];
   checkBuffer: boolean[];
   // shareVaild = 0;
-  received:boolean=false;
-  clipboard="Copy to clipboard";
+  received: boolean = false;
+  clipboard = "Copy to clipboard";
   desktop = this.deviceType.isDesktop();
-  size=60;
+  size = 60;
   uploadCounter: number;
   constructor(
     private FypBackendService: FypBackendService,
@@ -61,32 +61,30 @@ export class TextRecoveryComponent implements OnInit {
     // let buffer:string[];
     // let shares = new Map();  
     // buffer=this.textForm.get('secret').value.split('\n');
-    for(let i=0;i<this.textForm.get('threshold').value;i++)
-    {
-      this.textForm.addControl("share"+i,new FormControl(this.buffer[i]));
+    for (let i = 0; i < this.textForm.get('threshold').value; i++) {
+      this.textForm.addControl("share" + i, new FormControl(this.buffer[i]));
       // shares.set("share"+i,buffer[i]);
     }
     // console.log(this.textForm.value);
 
-    this.FypBackendService.textRecovery( this.textForm.value,this.textForm.get('threshold').value).subscribe(res => {
+    this.FypBackendService.textRecovery(this.textForm.value, this.textForm.get('threshold').value).subscribe(res => {
       // console.log(res);
-      this.received=true;
+      this.received = true;
       this.textForm.controls['secret'].setValue(res["secret"]);
 
     }, error => {
-      this.recoveryFail=true;
+      this.recoveryFail = true;
       console.log(error);
 
     });
   }
 
-  isClick()
-  {
-    this.clipboard="Copied!"
+  isClick() {
+    this.clipboard = "Copied!"
   }
   isChange() {
     this.uploadCounter = 0;
-    if (this.textForm.get('threshold').value <= 0||this.textForm.get('threshold').value > 20)
+    if (this.textForm.get('threshold').value <= 0 || this.textForm.get('threshold').value > 20)
       return;
     this.buffer = new Array(this.textForm.get('threshold').value);
     this.checkBuffer = new Array(this.textForm.get('threshold').value);
@@ -94,7 +92,10 @@ export class TextRecoveryComponent implements OnInit {
 
   textLoad(text: any, i: number) {
 
-    if (text === null)
+    if (!text)
+      return;
+
+    if (text.target.files.length < 1)
       return;
 
     const textReader = new FileReader();
@@ -108,7 +109,7 @@ export class TextRecoveryComponent implements OnInit {
       // this.buffer[i] = String.fromCharCode.apply(imageReader.result).replace(/data:image\/png;base64,/, '');
       tempBuffer = (textReader.result as string);
       // this.buffer[i] = tempBuffer.replace(removeSuffix, '') //this is use to remove the type suffix /data:image\/jpeg;base64,/
-      this.buffer[i]=tempBuffer;
+      this.buffer[i] = tempBuffer;
       // console.log(tempBuffer);
       // console.log(i+": "+this.buffer[i]);
       this.checkBuffer[i] = true;
@@ -119,16 +120,15 @@ export class TextRecoveryComponent implements OnInit {
     // this.buffer[i] = (image.target.files)[0];
     // this.imageForm.controls['secret'].setValue(i); //make the vaild pass that allow split button
     // console.log("text " + i + " uploaded");
-   
+
     //control the form submit
     this.shareVaild++;
-    if (this.shareVaild === this.textForm.get('threshold').value)
-    {
+    if (this.shareVaild === this.textForm.get('threshold').value) {
       this.textForm.controls['secret'].setValue(true);
       // console.log(this.tempSecret);
     }
 
-    this.uploadCounter=this.uploadCounter+1;
+    this.uploadCounter = this.uploadCounter + 1;
 
 
     // this.readImage = true;
