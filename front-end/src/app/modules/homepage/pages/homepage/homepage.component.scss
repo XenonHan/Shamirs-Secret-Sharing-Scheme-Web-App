@@ -24,7 +24,7 @@
 
   .slick-slide {
     transition: all ease-in-out .3s;
-    opacity: .2;
+    opacity: 0;
   }
   
   .slick-active {
@@ -71,8 +71,8 @@ iframe{
 .homepage-title {
     display: block;
     text-align: center;
-    font-size: 3.5rem;
-    text-shadow: 2px 2px 2px #333;
+    font-size: 3.5vw;
+    text-shadow: 1px 1px 1px #333;
   }
   .homepage-subtitle{
     margin-left: auto;
@@ -95,7 +95,7 @@ iframe{
     margin-top: 4%;
     display: block;
     text-align: center;
-    font-size: 2em;
+    font-size: 2vw;
     text-shadow: 1px 1px 1px #333;
   }
   .homepage-subtitle p{
