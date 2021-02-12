@@ -18,7 +18,7 @@
                     <div style="text-align: center;">
                         <label for="threshold"><span *ngIf="this.desktop">Threshold &nbsp;</span></label>
                         <input type="number" [placeholder]="desktop?'Threshold number':'t'" formControlName="threshold"
-                            [readonly]="received" style="width: 50%;" (change)="isChange()">
+                            [readonly]="received||recoveryFail" style="width: 50%;" (change)="isChange()">
                     </div>
                     <div *ngIf="threshold.touched && !threshold.valid; else checkRange">
 

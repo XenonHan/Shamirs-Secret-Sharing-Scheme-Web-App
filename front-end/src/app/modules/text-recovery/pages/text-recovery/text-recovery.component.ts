@@ -92,11 +92,15 @@ export class TextRecoveryComponent implements OnInit {
 
   textLoad(text: any, i: number) {
 
-    if (!text)
+    if (!text||text===null)
       return;
 
     if (text.target.files.length < 1)
       return;
+
+     if(!text.target.files[0].type)
+      return;
+      // console.log(123);
 
     const textReader = new FileReader();
 
