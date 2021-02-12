@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { faTimesCircle,faUpload } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -13,6 +14,9 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class TextRecoveryComponent implements OnInit {
 
   textForm: FormGroup;
+  faTimesCircle=faTimesCircle;
+  faUpload=faUpload;
+  recoveryFail:boolean=false;
   // tempSecret:string="";
   shareVaild = 0;
   buffer: string[];
@@ -22,6 +26,7 @@ export class TextRecoveryComponent implements OnInit {
   clipboard="Copy to clipboard";
   desktop = this.deviceType.isDesktop();
   size=60;
+  uploadCounter: number;
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
@@ -69,6 +74,7 @@ export class TextRecoveryComponent implements OnInit {
       this.textForm.controls['secret'].setValue(res["secret"]);
 
     }, error => {
+      this.recoveryFail=true;
       console.log(error);
 
     });
@@ -79,7 +85,8 @@ export class TextRecoveryComponent implements OnInit {
     this.clipboard="Copied!"
   }
   isChange() {
-    if (this.textForm.get('threshold').value <= 0)
+    this.uploadCounter = 0;
+    if (this.textForm.get('threshold').value <= 0||this.textForm.get('threshold').value > 20)
       return;
     this.buffer = new Array(this.textForm.get('threshold').value);
     this.checkBuffer = new Array(this.textForm.get('threshold').value);
@@ -121,7 +128,7 @@ export class TextRecoveryComponent implements OnInit {
       // console.log(this.tempSecret);
     }
 
-
+    this.uploadCounter=this.uploadCounter+1;
 
 
     // this.readImage = true;

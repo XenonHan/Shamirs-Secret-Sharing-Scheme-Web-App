@@ -11,6 +11,9 @@ import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     ReactiveFormsModule ,
     MatDividerModule,
     FlexLayoutModule,
-    ClipboardModule
+    ClipboardModule,
+    FontAwesomeModule
 
   ]
 })

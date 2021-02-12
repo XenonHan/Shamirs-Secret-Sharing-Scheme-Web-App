@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FypBackendService } from '../../../../fyp-backend.service';
-import { faDownload, faUpload, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faUpload, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
@@ -15,6 +15,7 @@ export class ZipRecoveryComponent implements OnInit {
 
   buffer: string[];
   faCheckCircle = faCheckCircle;
+  faTimesCircle=faTimesCircle
   fileType: string;
   checkBuffer: boolean[];
   shareVaild = 0;
@@ -25,6 +26,8 @@ export class ZipRecoveryComponent implements OnInit {
   zipForm: FormGroup;
   received: boolean = false;
   tooLarge: boolean = false;
+  recoveryFail:boolean=false;
+  uploadCounter: number;
   // clipboard = "Copy to clipboard"
   desktop = this.deviceType.isDesktop();
   constructor(
@@ -82,14 +85,17 @@ export class ZipRecoveryComponent implements OnInit {
 
 
     }, error => {
+      this.recoveryFail=true;
       console.log(error);
 
     });
   }
 
   isChange() {
-    if (this.zipForm.get('threshold').value <= 0)
+    this.uploadCounter = 0;
+    if (this.zipForm.get('threshold').value <= 0||this.zipForm.get('threshold').value > 20)
       return;
+    
     this.buffer = new Array(this.zipForm.get('threshold').value);
     this.checkBuffer = new Array(this.zipForm.get('threshold').value);
   }
@@ -99,7 +105,7 @@ export class ZipRecoveryComponent implements OnInit {
     if (image === null)
       return;
 
-      // console.log((image.target.files)[0].size );
+    // console.log((image.target.files)[0].size );
 
     //15MB + 1B for store the x value
     this.tooLarge = false;
@@ -140,7 +146,9 @@ export class ZipRecoveryComponent implements OnInit {
 
 
     // this.readImage = true;
+    this.uploadCounter=this.uploadCounter+1;
   }
+  
 
 
 }

@@ -26,7 +26,7 @@
                     </div>
                     <ng-template #checkRange>
                         <div class="alert alert-danger"
-                            *ngIf="threshold.touched &&(zipForm.get('threshold').value<1)">
+                            *ngIf="threshold.touched &&(zipForm.get('threshold').value<1 || zipForm.get('threshold').value>20)">
                             Threshold value invalid</div>
                     </ng-template>
                 </div>
@@ -69,17 +69,24 @@
                 <h2 style="color: #ADD8E6">Zip file ready</h2>
                 <fa-icon [icon]="faCheckCircle" style="color: chartreuse;"></fa-icon>
             </div>
+            <div *ngIf="recoveryFail" style="margin: auto; text-align:center;">
+
+                <br>
+                <!-- <img [src]="image" style="width: 80%;  " download> -->
+                <h2 style="color: red">Zip file recovery failed, please upload valid share(s)</h2>
+                <fa-icon [icon]="faTimesCircle" style="color: red;"></fa-icon>
+            </div>
             <br><br>
 
 
             <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
-                [disabled]="zipForm.invalid" fxLayoutAlign="space-evenly none"
+                [disabled]="zipForm.invalid || (zipForm.get('threshold').value<1 || zipForm.get('threshold').value>20) || uploadCounter<zipForm.get('threshold').value" fxLayoutAlign="space-evenly none"
                 *ngIf="!this.received && !loading;else Sharereceive">Recovery</button>
 
             <br>
             <ng-template #Sharereceive>
 
-                <button *ngIf="loading" type="button" mat-raised-button fxLayoutAlign="space-evenly none"
+                <button *ngIf="loading&&!recoveryFail" type="button" mat-raised-button fxLayoutAlign="space-evenly none"
                     style="background-color:#ADD8E6; ;margin: auto;">Loading...</button>
                 <br>
                 <div *ngIf="!loading" style="text-align:center; color: #ADD8E6">

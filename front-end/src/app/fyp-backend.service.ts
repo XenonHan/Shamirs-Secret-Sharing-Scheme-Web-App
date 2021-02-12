@@ -27,7 +27,7 @@ export class FypBackendService {
   }
 
   textRecovery(payload: any, t: number): Observable<any> {
-    console.log(payload);
+    // console.log(payload);
     return this.http.post(this.apiUrl + '/TextApi/recovery/' + t, payload, {
       observe: 'response'
     }).pipe(map(res => {

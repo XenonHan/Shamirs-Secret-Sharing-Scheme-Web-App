@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FypBackendService } from '../../../../fyp-backend.service';
-import { faDownload, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faUpload, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 
@@ -15,6 +15,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class ImageRecoveryComponent implements OnInit {
 
   buffer: string[];
+  faTimesCircle=faTimesCircle;
   fileType: string;
   checkBuffer: boolean[];
   shareVaild = 0;
@@ -24,6 +25,8 @@ export class ImageRecoveryComponent implements OnInit {
   image: SafeResourceUrl;
   imageForm: FormGroup;
   received: boolean = false;
+  uploadCounter: number;
+  recoveryFail:boolean=false;
   // clipboard = "Copy to clipboard"
   desktop = this.deviceType.isDesktop();
   constructor(
@@ -81,13 +84,15 @@ export class ImageRecoveryComponent implements OnInit {
 
 
     }, error => {
+      this.recoveryFail=true;
       console.log(error);
 
     });
   }
 
   isChange() {
-    if (this.imageForm.get('threshold').value <= 0)
+    this.uploadCounter = 0;
+    if (this.imageForm.get('threshold').value <= 0||this.imageForm.get('threshold').value > 20)
       return;
     this.buffer = new Array(this.imageForm.get('threshold').value);
     this.checkBuffer = new Array(this.imageForm.get('threshold').value);
@@ -128,7 +133,7 @@ export class ImageRecoveryComponent implements OnInit {
     if (i === 0)
       this.fileType = (image.target.files)[0].type;
 
-
+    this.uploadCounter = this.uploadCounter + 1;
     // this.readImage = true;
   }
 
