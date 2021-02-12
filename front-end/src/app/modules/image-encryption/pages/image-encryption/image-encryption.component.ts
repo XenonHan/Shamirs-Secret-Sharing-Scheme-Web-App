@@ -98,7 +98,7 @@ export class ImageEncryptionComponent implements OnInit {
       this.imageURL = imageReader.result;
     }
     this.imageForm.controls['secret'].setValue(1); //make the vaild pass that allow split button
-    console.log("image uploaded");
+    // console.log("image uploaded");
     // console.log((image.target.files)[0].type);
     this.fileType=(image.target.files)[0].type;
     this.readImage = true;
