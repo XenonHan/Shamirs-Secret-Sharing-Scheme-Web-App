@@ -71,7 +71,7 @@ iframe{
 .homepage-title {
     display: block;
     text-align: center;
-    font-size: 6.5vw;
+    font-size: 4vw;
     text-shadow: 1px 1px 1px #333;
   }
 //   .homepage-subtitle{
@@ -92,76 +92,30 @@ iframe{
     // width:100%;
     // height: 150px;
     position: relative;
-    margin-top: 4%;
+    margin-top: 8%;
     display: block;
     text-align: center;
-    font-size: 5vw;
+    font-size: 3vw;
     text-shadow: 1px 1px 1px #333;
   }
-  .frameContainer
-  {
-      width: 90%;
-      height: 54%;
-      margin: auto;
-  }
-  @media screen and (min-width: 600px)
-  {
-
-    .homepage-title {
-        display: block;
-        text-align: center;
-        font-size: 4.5vw;
-        text-shadow: 1px 1px 1px #333;
-      }
-    .homepage-sub-subtitle{
-        margin-left: auto;
-        margin-right: auto;
-        // width:100%;
-        // height: 150px;
-        position: relative;
-        margin-top: 4%;
-        display: block;
-        text-align: center;
-        font-size: 3vw;
-        text-shadow: 1px 1px 1px #333;
-      }
-  }
-  @media screen and (min-width: 1000px)
-  {
-
-    .homepage-title {
-        display: block;
-        text-align: center;
-        font-size: 3.5vw;
-        text-shadow: 1px 1px 1px #333;
-      }
-    .homepage-sub-subtitle{
-        margin-left: auto;
-        margin-right: auto;
-        // width:100%;
-        // height: 150px;
-        position: relative;
-        margin-top: 4%;
-        display: block;
-        text-align: center;
-        font-size: 2vw;
-        text-shadow: 1px 1px 1px #333;
-      }
-  }
+  /*the above construct the down allow*/
+  .tm-intro-next {
+ 
+    bottom: 10%;
+    position: absolute;
+    // top:40%;
+    left: 0;
+    right: 0;
+    font-size: 3rem;
+    color: #fff!important;
+}
+ 
 
   .homepage-subtitle p{
       color: black;
   }
 
-  /*the above construct the down allow*/
-  .tm-intro-next {
-    position: absolute;
-    bottom: 100px;
-    left: 0;
-    right: 0;
-    font-size: 5rem;
-    color: #fff!important;
-}
+
 .text-center {
     text-align: center!important;
 }
@@ -253,6 +207,78 @@ p{
 .img-fluid {
     max-width: 70%;
     height: auto;
+}
+
+@media screen and (min-width: 600px)
+{
+  .tm-intro-next {
+    position: absolute;
+    bottom: 10%;
+    // top:70%;
+    left: 0;
+    right: 0;
+    font-size: 3rem;
+    color: #fff!important;
+    }
+
+  .homepage-title {
+      display: block;
+      text-align: center;
+      font-size: 4vw;
+      text-shadow: 1px 1px 1px #333;
+    }
+  .homepage-sub-subtitle{
+      margin-left: auto;
+      margin-right: auto;
+      // width:100%;
+      // height: 150px;
+      position: relative;
+      margin-top: 8%;
+      display: block;
+      text-align: center;
+      font-size: 3vw;
+      text-shadow: 1px 1px 1px #333;
+    }
+    .tm-down-arrow-link {
+      display: block;
+      margin-top: 10%;
+  }
+}
+//override
+@media screen and (min-width: 1000px)
+{
+  .tm-intro-next {
+    position: absolute;
+    bottom: 10%;
+    // top:45%;
+    left: 0;
+    right: 0;
+    font-size: 5rem;
+    color: #fff!important;
+   }
+
+  .homepage-title {
+      display: block;
+      text-align: center;
+      font-size: 3vw;
+      text-shadow: 2px 2px 2px #333;
+    }
+  .homepage-sub-subtitle{
+      margin-left: auto;
+      margin-right: auto;
+      // width:100%;
+      // height: 150px;
+      position: relative;
+      margin-top: 8%;
+      display: block;
+      text-align: center;
+      font-size: 2vw;
+      text-shadow: 2px 2px 2px #333;
+    }
+    .tm-down-arrow-link {
+      // display: block;
+      margin-top: 18%;
+  }
 }
 
 /*all.min.css*/
