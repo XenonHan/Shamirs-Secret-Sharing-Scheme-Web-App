@@ -15,7 +15,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class ImageRecoveryComponent implements OnInit {
 
   buffer: string[];
-  faTimesCircle=faTimesCircle;
+  faTimesCircle = faTimesCircle;
   fileType: string;
   checkBuffer: boolean[];
   shareVaild = 0;
@@ -26,7 +26,7 @@ export class ImageRecoveryComponent implements OnInit {
   imageForm: FormGroup;
   received: boolean = false;
   uploadCounter: number;
-  recoveryFail:boolean=false;
+  recoveryFail: boolean = false;
   // clipboard = "Copy to clipboard"
   desktop = this.deviceType.isDesktop();
   constructor(
@@ -84,7 +84,7 @@ export class ImageRecoveryComponent implements OnInit {
 
 
     }, error => {
-      this.recoveryFail=true;
+      this.recoveryFail = true;
       console.log(error);
 
     });
@@ -92,7 +92,7 @@ export class ImageRecoveryComponent implements OnInit {
 
   isChange() {
     this.uploadCounter = 0;
-    if (this.imageForm.get('threshold').value <= 0||this.imageForm.get('threshold').value > 20)
+    if (this.imageForm.get('threshold').value <= 0 || this.imageForm.get('threshold').value > 20)
       return;
     this.buffer = new Array(this.imageForm.get('threshold').value);
     this.checkBuffer = new Array(this.imageForm.get('threshold').value);
@@ -103,9 +103,15 @@ export class ImageRecoveryComponent implements OnInit {
     if (image === null)
       return;
 
-    if (i === 0)
-      this.fileType = (image.target.files)[0].type;
-    console.log(this.fileType);
+    if (image.target.files.length < 1)
+      return;
+
+    this.fileType = (image.target.files)[0].type;
+    if (!this.fileType)
+      return;
+
+
+    // console.log(this.fileType);
     const imageReader = new FileReader();
     // this.imageFile = (image.target.files)[0];
     imageReader.readAsDataURL((image.target.files)[0]);
@@ -125,7 +131,7 @@ export class ImageRecoveryComponent implements OnInit {
 
     // this.buffer[i] = (image.target.files)[0];
     // this.imageForm.controls['secret'].setValue(i); //make the vaild pass that allow split button
-    console.log("image " + i + " uploaded");
+    // console.log("image " + i + " uploaded");
     this.shareVaild++;
     if (this.shareVaild === this.imageForm.get('threshold').value)
       this.imageForm.controls['secret'].setValue(i);

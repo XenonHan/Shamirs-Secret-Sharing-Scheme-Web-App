@@ -118,7 +118,7 @@ export class TextRecoveryComponent implements OnInit {
 
     // this.buffer[i] = (image.target.files)[0];
     // this.imageForm.controls['secret'].setValue(i); //make the vaild pass that allow split button
-    console.log("text " + i + " uploaded");
+    // console.log("text " + i + " uploaded");
    
     //control the form submit
     this.shareVaild++;

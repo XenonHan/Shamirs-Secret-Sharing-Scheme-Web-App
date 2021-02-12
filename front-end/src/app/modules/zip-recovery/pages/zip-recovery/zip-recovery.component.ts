@@ -15,7 +15,7 @@ export class ZipRecoveryComponent implements OnInit {
 
   buffer: string[];
   faCheckCircle = faCheckCircle;
-  faTimesCircle=faTimesCircle
+  faTimesCircle = faTimesCircle
   fileType: string;
   checkBuffer: boolean[];
   shareVaild = 0;
@@ -26,7 +26,7 @@ export class ZipRecoveryComponent implements OnInit {
   zipForm: FormGroup;
   received: boolean = false;
   tooLarge: boolean = false;
-  recoveryFail:boolean=false;
+  recoveryFail: boolean = false;
   uploadCounter: number;
   // clipboard = "Copy to clipboard"
   desktop = this.deviceType.isDesktop();
@@ -85,7 +85,7 @@ export class ZipRecoveryComponent implements OnInit {
 
 
     }, error => {
-      this.recoveryFail=true;
+      this.recoveryFail = true;
       console.log(error);
 
     });
@@ -93,9 +93,9 @@ export class ZipRecoveryComponent implements OnInit {
 
   isChange() {
     this.uploadCounter = 0;
-    if (this.zipForm.get('threshold').value <= 0||this.zipForm.get('threshold').value > 20)
+    if (this.zipForm.get('threshold').value <= 0 || this.zipForm.get('threshold').value > 20)
       return;
-    
+
     this.buffer = new Array(this.zipForm.get('threshold').value);
     this.checkBuffer = new Array(this.zipForm.get('threshold').value);
   }
@@ -105,18 +105,24 @@ export class ZipRecoveryComponent implements OnInit {
     if (image === null)
       return;
 
-    // console.log((image.target.files)[0].size );
+    if (image.target.files.length < 1)
+      return;
+
+    // the user may not uploaded from share 0
+    this.fileType = (image.target.files)[0].type;
+
+    if (!this.fileType)
+      return;
+    // console.log(this.fileType);
 
     //15MB + 1B for store the x value
     this.tooLarge = false;
+
     if ((image.target.files)[0].size > 15728640) {
       this.tooLarge = true;
       return;
     }
 
-    if (i === 0)
-      this.fileType = (image.target.files)[0].type;
-    console.log(this.fileType);
     const imageReader = new FileReader();
     // this.imageFile = (image.target.files)[0];
     imageReader.readAsDataURL((image.target.files)[0]);
@@ -146,9 +152,9 @@ export class ZipRecoveryComponent implements OnInit {
 
 
     // this.readImage = true;
-    this.uploadCounter=this.uploadCounter+1;
+    this.uploadCounter = this.uploadCounter + 1;
   }
-  
+
 
 
 }
