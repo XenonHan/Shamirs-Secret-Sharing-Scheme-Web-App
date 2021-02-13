@@ -16,6 +16,7 @@ export class TextRecoveryComponent implements OnInit {
   textForm: FormGroup;
   faTimesCircle = faTimesCircle;
   faUpload = faUpload;
+  loading = false;
   recoveryFail: boolean = false;
   // tempSecret:string="";
   shareVaild = 0;
@@ -61,6 +62,7 @@ export class TextRecoveryComponent implements OnInit {
     // let buffer:string[];
     // let shares = new Map();  
     // buffer=this.textForm.get('secret').value.split('\n');
+    this.loading=true;
     for (let i = 0; i < this.textForm.get('threshold').value; i++) {
       this.textForm.addControl("share" + i, new FormControl(this.buffer[i]));
       // shares.set("share"+i,buffer[i]);
@@ -69,6 +71,7 @@ export class TextRecoveryComponent implements OnInit {
 
     this.FypBackendService.textRecovery(this.textForm.value, this.textForm.get('threshold').value).subscribe(res => {
       // console.log(res);
+      this.loading=false;
       this.received = true;
       this.textForm.controls['secret'].setValue(res["secret"]);
 
