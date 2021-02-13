@@ -2,7 +2,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FypBackendService } from '../../../../fyp-backend.service';
-import { faUpload,faDownload,faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUpload,faDownload,faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
@@ -13,6 +13,8 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [];
   loading=false;
+  encryptFail:boolean=false;
+  faTimesCircle=faTimesCircle;
   faCheckCircle=faCheckCircle;
   fileType:string;
   faDownload=faDownload;
@@ -77,6 +79,7 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
       
 
     }, error => {
+      this.encryptFail=true;
       console.log(error);
 
     });

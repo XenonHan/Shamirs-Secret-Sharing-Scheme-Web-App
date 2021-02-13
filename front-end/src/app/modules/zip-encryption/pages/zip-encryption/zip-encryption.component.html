@@ -65,11 +65,20 @@
                     file
                 </div>
             </div>
-            <div *ngIf="readImage" style="margin: auto; text-align:center;">
+            <div *ngIf="readImage&&!encryptFail" style="margin: auto; text-align:center;">
                 <br>
                 <!-- <img src={{imageURL}} style="width: 80%;  "> -->
                 <h2 style="color: #ADD8E6">Zip file uploaded</h2>
                 <fa-icon [icon]="faCheckCircle" style="color: chartreuse;"></fa-icon>
+            </div>
+            <div *ngIf="encryptFail" style="margin: auto; text-align:center;">
+
+                <br>
+                <!-- <img [src]="image" style="width: 80%;  " download> -->
+                <h2 style="color: red">Zip encryption failed, properly due to the server heap overflow</h2>
+                <h2 style="color: red">please split/compress the current
+                    file / input smaller total share number / try again later</h2>
+                <fa-icon [icon]="faTimesCircle" style="color: red;"></fa-icon>
             </div>
 
 
@@ -101,7 +110,7 @@
                 *ngIf="!this.received&&!loading;else Sharereceive">Split</button>
 
             <ng-template #Sharereceive>
-                <button *ngIf="loading" type="button" mat-raised-button fxLayoutAlign="space-evenly none"
+                <button *ngIf="loading&&!encryptFail" type="button" mat-raised-button fxLayoutAlign="space-evenly none"
                     style="background-color:#ADD8E6; ;margin: auto;">Loading...</button>
                 <!-- <button *ngIf="!loading" type="button" mat-raised-button
                     style="background-color: #ADD8E6; margin: auto;" fxLayoutAlign="space-evenly none"
