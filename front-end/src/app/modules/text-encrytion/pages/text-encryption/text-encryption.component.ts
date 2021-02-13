@@ -15,6 +15,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class TextEncryptionComponent implements OnInit {
   faDownload=faDownload;
+  loading=false;
   buffer: SafeResourceUrl [];
   textForm: FormGroup;
   received:boolean=false;
@@ -56,9 +57,11 @@ export class TextEncryptionComponent implements OnInit {
     // console.log(this.textForm.get('secret').value + "\n");
     
     // let buffer:string='';
+    this.loading=true;
     let temp:SafeResourceUrl []= new Array(this.textForm.get('totalShare').value);
     this.FypBackendService.textEncryption(this.textForm.value).subscribe(res => {
       // console.log(res);
+      this.loading=false;
       this.received=true;
       for(let i=0;i<this.textForm.get('totalShare').value;i++)
       {

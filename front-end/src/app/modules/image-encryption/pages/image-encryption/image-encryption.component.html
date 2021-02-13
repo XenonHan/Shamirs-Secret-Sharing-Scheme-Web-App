@@ -17,7 +17,7 @@
                     <div style=" text-align: center">
                         <label for="totalShare"><span *ngIf="this.desktop">Total shares &nbsp;</span></label>
                         <input type="number" [placeholder]="desktop?'Number of shares':'n'" formControlName="totalShare"
-                            [readonly]="received" style="width: 50%;" min="1" max="20">
+                            [readonly]="received||loading" style="width: 50%;" min="1" max="20">
                     </div>
                     <div class="alert alert-danger" *ngIf="totalShare.touched &&(imageForm.get('totalShare').value>20)">
                         Max. 20 shares are allowed
@@ -36,7 +36,7 @@
                     <div >
                         <label for="threshold" [ngStyle]=" desktop? {'padding-left': '15%;'}:{'padding-left': '20%;'} "><span *ngIf="this.desktop">Threshold &nbsp;</span></label>
                         <input type="number" [placeholder]="desktop?'Threshold number':'t'" formControlName="threshold"
-                            [readonly]="received" style="width: 50%;" min="1" max="20">
+                            [readonly]="received||loading" style="width: 50%;" min="1" max="20">
                     </div>
                     <div *ngIf="threshold.touched && !threshold.valid; else checkRange">
 

@@ -33,8 +33,10 @@
                     </ng-template>
                 </div>
                 <div class="attribute" [fxFlex]="desktop?25:35">
-                    <div >
-                        <label for="threshold" [ngStyle]=" desktop? {'padding-left': '15%;'}:{'padding-left': '20%;'}"><span *ngIf="this.desktop">Threshold &nbsp;</span></label>
+                    <div>
+                        <label for="threshold"
+                            [ngStyle]=" desktop? {'padding-left': '15%;'}:{'padding-left': '20%;'}"><span
+                                *ngIf="this.desktop">Threshold &nbsp;</span></label>
                         <input type="number" [placeholder]="desktop?'Threshold number':'t'" formControlName="threshold"
                             [readonly]="received" style="width: 50%;" min="1" max="20">
                     </div>
@@ -62,7 +64,7 @@
             </div>
             <br><br>
 
-            <div *ngIf="received"  style=" text-align: center;">
+            <div *ngIf="received" style=" text-align: center;">
                 <div class="attribute " *ngFor="let b of buffer; index as i;">
 
                     <fa-icon [icon]="faDownload"></fa-icon>
@@ -76,9 +78,11 @@
 
 
             <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
-                [disabled]="textForm.invalid||(threshold.touched &&(textForm.get('threshold').value>textForm.get('totalShare').value||textForm.get('threshold').value<1)||(textForm.get('totalShare').value>20))" fxLayoutAlign="space-evenly none"
-                *ngIf="!this.received;">Split</button>
-                <!-- else Sharereceive -->
+                [disabled]="textForm.invalid||(threshold.touched &&(textForm.get('threshold').value>textForm.get('totalShare').value||textForm.get('threshold').value<1)||(textForm.get('totalShare').value>20))"
+                fxLayoutAlign="space-evenly none" *ngIf="!this.received && !loading;">Split</button>
+            <button *ngIf="loading" type="button" mat-raised-button fxLayoutAlign="space-evenly none"
+                style="background-color:#ADD8E6; ;margin: auto;">Loading...</button>
+            <!-- else Sharereceive -->
             <!-- <ng-template #Sharereceive>
                 <button type="button" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
                     fxLayoutAlign="space-evenly none" [cdkCopyToClipboard]="this.textForm.get('secret').value" (click)="isClick()">{{clipboard}}</button>
