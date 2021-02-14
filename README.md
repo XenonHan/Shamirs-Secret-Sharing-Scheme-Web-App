@@ -1,6 +1,6 @@
 # Shamir's Secret Sharing Online application frontend
 This project implement SSSS to support secret encryption and recovery in a safe manner.
-The support function in this project include:
+The supported functions in this project includes:
 1.  Text
 2.  Image  
 3.  Zip file
