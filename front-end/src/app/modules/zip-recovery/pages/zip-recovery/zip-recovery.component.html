@@ -80,7 +80,7 @@
 
 
             <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
-                [disabled]="zipForm.invalid || (zipForm.get('threshold').value<1 || zipForm.get('threshold').value>20) || uploadCounter<zipForm.get('threshold').value" fxLayoutAlign="space-evenly none"
+                [disabled]="zipForm.invalid || (zipForm.get('threshold').value<1 || zipForm.get('threshold').value>20) " fxLayoutAlign="space-evenly none"
                 *ngIf="!this.received && !loading;else Sharereceive">Recovery</button>
 
             <br>

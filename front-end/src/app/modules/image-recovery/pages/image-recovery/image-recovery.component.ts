@@ -25,7 +25,7 @@ export class ImageRecoveryComponent implements OnInit {
   image: SafeResourceUrl;
   imageForm: FormGroup;
   received: boolean = false;
-  uploadCounter: number;
+  // uploadCounter: number;
   recoveryFail: boolean = false;
   // clipboard = "Copy to clipboard"
   desktop = this.deviceType.isDesktop();
@@ -91,7 +91,7 @@ export class ImageRecoveryComponent implements OnInit {
   }
 
   isChange() {
-    this.uploadCounter = 0;
+    this.shareVaild = 0;
     if (this.imageForm.get('threshold').value <= 0 || this.imageForm.get('threshold').value > 20)
       return;
     this.buffer = new Array(this.imageForm.get('threshold').value);
@@ -136,10 +136,10 @@ export class ImageRecoveryComponent implements OnInit {
     if (this.shareVaild === this.imageForm.get('threshold').value)
       this.imageForm.controls['secret'].setValue(i);
 
-    if (i === 0)
-      this.fileType = (image.target.files)[0].type;
+    // if (i === 0)
+    //   this.fileType = (image.target.files)[0].type;
 
-    this.uploadCounter = this.uploadCounter + 1;
+    // this.uploadCounter = this.uploadCounter + 1;
     // this.readImage = true;
   }
 

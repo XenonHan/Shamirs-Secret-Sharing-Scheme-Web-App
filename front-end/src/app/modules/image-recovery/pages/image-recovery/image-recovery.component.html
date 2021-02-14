@@ -75,7 +75,7 @@
 
 
             <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
-                [disabled]="imageForm.invalid|| (imageForm.get('threshold').value<1 || imageForm.get('threshold').value>20) || uploadCounter<imageForm.get('threshold').value" fxLayoutAlign="space-evenly none"
+                [disabled]="imageForm.invalid|| (imageForm.get('threshold').value<1 || imageForm.get('threshold').value>20) " fxLayoutAlign="space-evenly none"
                 *ngIf="!this.received && !loading;else Sharereceive">Recovery</button>
 
             <br>

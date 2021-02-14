@@ -27,7 +27,7 @@ export class ZipRecoveryComponent implements OnInit {
   received: boolean = false;
   tooLarge: boolean = false;
   recoveryFail: boolean = false;
-  uploadCounter: number;
+  // uploadCounter: number;
   // clipboard = "Copy to clipboard"
   desktop = this.deviceType.isDesktop();
   constructor(
@@ -92,7 +92,7 @@ export class ZipRecoveryComponent implements OnInit {
   }
 
   isChange() {
-    this.uploadCounter = 0;
+    this.shareVaild = 0;
     if (this.zipForm.get('threshold').value <= 0 || this.zipForm.get('threshold').value > 20)
       return;
 
@@ -147,12 +147,12 @@ export class ZipRecoveryComponent implements OnInit {
     if (this.shareVaild === this.zipForm.get('threshold').value)
       this.zipForm.controls['secret'].setValue(i);
 
-    if (i === 0)
-      this.fileType = (image.target.files)[0].type;
+    // if (i === 0)
+    //   this.fileType = (image.target.files)[0].type;
 
 
     // this.readImage = true;
-    this.uploadCounter = this.uploadCounter + 1;
+    // this.uploadCounter = this.uploadCounter + 1;
   }
 
 

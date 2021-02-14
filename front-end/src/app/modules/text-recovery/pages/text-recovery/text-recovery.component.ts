@@ -27,7 +27,7 @@ export class TextRecoveryComponent implements OnInit {
   clipboard = "Copy to clipboard";
   desktop = this.deviceType.isDesktop();
   size = 60;
-  uploadCounter: number;
+  // uploadCounter: number;
   constructor(
     private FypBackendService: FypBackendService,
     private formBuilder: FormBuilder,
@@ -86,7 +86,7 @@ export class TextRecoveryComponent implements OnInit {
     this.clipboard = "Copied!"
   }
   isChange() {
-    this.uploadCounter = 0;
+    this.shareVaild = 0;
     if (this.textForm.get('threshold').value <= 0 || this.textForm.get('threshold').value > 20)
       return;
     this.buffer = new Array(this.textForm.get('threshold').value);
@@ -135,7 +135,7 @@ export class TextRecoveryComponent implements OnInit {
       // console.log(this.tempSecret);
     }
 
-    this.uploadCounter = this.uploadCounter + 1;
+    // this.uploadCounter = this.uploadCounter + 1;
 
 
     // this.readImage = true;

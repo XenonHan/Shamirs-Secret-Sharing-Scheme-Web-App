@@ -67,7 +67,7 @@
 
             <div *ngIf="!recoveryFail&&!loading">
                 <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
-                    [disabled]="textForm.invalid|| (textForm.get('threshold').value<1 || textForm.get('threshold').value>20) || uploadCounter<textForm.get('threshold').value"
+                    [disabled]="textForm.invalid|| (textForm.get('threshold').value<1 || textForm.get('threshold').value>20) "
                     fxLayoutAlign="space-evenly none" *ngIf="!this.received;else Sharereceive">Recovery</button>
                 <ng-template #Sharereceive>
                     <button type="button" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
