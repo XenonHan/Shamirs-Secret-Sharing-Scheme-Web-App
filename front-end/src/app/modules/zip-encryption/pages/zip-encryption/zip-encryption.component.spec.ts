@@ -2,13 +2,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ZipEncryptionComponent } from './zip-encryption.component';
 
+import { HttpClientTestingModule,  } from '@angular/common/http/testing';
+import { FypBackendService } from '../../../../fyp-backend.service';
+import { ReactiveFormsModule  } from '@angular/forms';
+
 describe('ZipEncryptionComponent', () => {
   let component: ZipEncryptionComponent;
   let fixture: ComponentFixture<ZipEncryptionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ZipEncryptionComponent ]
+      declarations: [ ZipEncryptionComponent ],
+      imports: [ HttpClientTestingModule,ReactiveFormsModule  ],
+      providers: [ FypBackendService ]
     })
     .compileComponents();
   }));
