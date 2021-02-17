@@ -1,9 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController,  } from '@angular/common/http/testing';
 import { FypBackendService } from './fyp-backend.service';
-import { Observable, throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
-import { error } from '@angular/compiler/src/util';
+
+
 export interface testData{
   share0:string;
   share1:string;
@@ -38,10 +37,9 @@ describe('FypBackendService', () => {
     service.textEncryption(1).subscribe(testData=>{
       expect(testData).toEqual(shares);
     });
-    const request=httpTestingController.expectOne(service.apiUrl+ '/TextApi/encryption');
+    httpTestingController.expectOne(service.apiUrl+ '/TextApi/encryption').flush(shares);
 
 
-    request.flush(shares);
 
   });
 
@@ -49,9 +47,8 @@ describe('FypBackendService', () => {
     service.imageEncryption(null,1,1).subscribe(testData=>{
       expect(testData).toEqual(shares);
     });
-    const request=httpTestingController.expectOne(service.apiUrl+ '/ImageApi/encryption/1/1');
+    httpTestingController.expectOne(service.apiUrl+ '/ImageApi/encryption/1/1').flush(shares);
 
-    request.flush(shares);
 
   });
 
@@ -59,9 +56,9 @@ describe('FypBackendService', () => {
     service.zipEncryption(1,null,1,1).subscribe(testData=>{
       expect(testData).toEqual(shares);
     });
-    const request=httpTestingController.expectOne(service.apiUrl+ '/ZipApi/encryption/1/1');
+    httpTestingController.expectOne(service.apiUrl+ '/ZipApi/encryption/1/1').flush(shares);
 
-    request.flush(shares);
+
 
   });
 
@@ -69,9 +66,9 @@ describe('FypBackendService', () => {
     service.zipEncryption(15728641,null,1,1).subscribe(testData=>{
       expect(testData).toEqual(shares);
     });
-    const request=httpTestingController.expectOne(service.apiUrl+ '/ZipApi/encryption/1/1');
+  httpTestingController.expectOne(service.apiUrl+ '/ZipApi/encryption/1/1').flush(shares);
 
-    request.flush(shares);
+
 
   });
 
@@ -79,9 +76,8 @@ describe('FypBackendService', () => {
     service.zipRecovery(null,1).subscribe(testData=>{
       expect(testData).toEqual(secret);
     });
-    const request=httpTestingController.expectOne(service.apiUrl+ '/ZipApi/recovery/1');
+    const request=httpTestingController.expectOne(service.apiUrl+ '/ZipApi/recovery/1').flush(secret);
 
-    request.flush(secret);
 
   });
 
@@ -89,9 +85,8 @@ describe('FypBackendService', () => {
     service.imageRecovery(null,1).subscribe(testData=>{
       expect(testData).toEqual(secret);
     });
-    const request=httpTestingController.expectOne(service.apiUrl+ '/ImageApi/recovery/1');
+    httpTestingController.expectOne(service.apiUrl+ '/ImageApi/recovery/1').flush(secret);
 
-    request.flush(secret);
 
   });
 
@@ -99,9 +94,8 @@ describe('FypBackendService', () => {
     service.textRecovery(null,1).subscribe(testData=>{
       expect(testData).toEqual(secret);
     });
-    const request=httpTestingController.expectOne(service.apiUrl+ '/TextApi/recovery/1');
+    httpTestingController.expectOne(service.apiUrl+ '/TextApi/recovery/1').flush(secret);
 
-    request.flush(secret);
 
   });
 
