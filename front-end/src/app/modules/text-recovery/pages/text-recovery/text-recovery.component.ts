@@ -46,9 +46,9 @@ export class TextRecoveryComponent implements OnInit {
   get threshold() {
     return this.textForm.get('threshold');
   }
-  get totalShare() {
-    return this.textForm.get('totalShare');
-  }
+ // get totalShare() {
+ //  return this.textForm.get('totalShare');
+ // }
   get secret() {
     return this.textForm.get('secret');
   }
