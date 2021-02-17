@@ -6,14 +6,18 @@ import { HttpClientTestingModule,  } from '@angular/common/http/testing';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { ReactiveFormsModule  } from '@angular/forms';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatDividerModule} from '@angular/material/divider';
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+
 describe('ZipEncryptionComponent', () => {
   let component: ZipEncryptionComponent;
   let fixture: ComponentFixture<ZipEncryptionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ZipEncryptionComponent ],
-      imports: [ HttpClientTestingModule,ReactiveFormsModule  ],
+      declarations: [ ZipEncryptionComponent,FaIconComponent ],
+      imports: [ HttpClientTestingModule,ReactiveFormsModule,FlexLayoutModule,MatDividerModule  ],
       providers: [ FypBackendService ]
     })
     .compileComponents();

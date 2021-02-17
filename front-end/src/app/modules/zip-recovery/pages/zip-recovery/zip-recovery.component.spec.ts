@@ -6,6 +6,10 @@ import { HttpClientTestingModule,  } from '@angular/common/http/testing';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { ReactiveFormsModule  } from '@angular/forms';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatDividerModule} from '@angular/material/divider';
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+
 describe('ZipRecoveryComponent', () => {
   let component: ZipRecoveryComponent;
   let fixture: ComponentFixture<ZipRecoveryComponent>;
@@ -14,8 +18,8 @@ describe('ZipRecoveryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ZipRecoveryComponent ],
-      imports: [ HttpClientTestingModule,ReactiveFormsModule  ],
+      declarations: [ ZipRecoveryComponent,FaIconComponent ],
+      imports: [ HttpClientTestingModule,ReactiveFormsModule,FlexLayoutModule,MatDividerModule  ],
       providers: [ FypBackendService ]
     })
     .compileComponents();

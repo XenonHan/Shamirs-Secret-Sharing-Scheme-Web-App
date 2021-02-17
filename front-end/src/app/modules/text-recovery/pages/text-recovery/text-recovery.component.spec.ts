@@ -6,14 +6,18 @@ import { HttpClientTestingModule,  } from '@angular/common/http/testing';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { ReactiveFormsModule  } from '@angular/forms';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatDividerModule} from '@angular/material/divider';
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+
 describe('TextRecoveryComponent', () => {
   let component: TextRecoveryComponent;
   let fixture: ComponentFixture<TextRecoveryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TextRecoveryComponent ],
-      imports: [ HttpClientTestingModule,ReactiveFormsModule  ],
+      declarations: [ TextRecoveryComponent,FaIconComponent ],
+      imports: [ HttpClientTestingModule,ReactiveFormsModule,MatDividerModule,FlexLayoutModule  ],
       providers: [ FypBackendService ]
     })
     .compileComponents();
