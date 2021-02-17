@@ -10,9 +10,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatDividerModule} from '@angular/material/divider';
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 
+import { of, Observable,throwError } from 'rxjs';
+
 describe('ImageRecoveryComponent', () => {
   let component: ImageRecoveryComponent;
   let fixture: ComponentFixture<ImageRecoveryComponent>;
+  let service: FypBackendService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,9 +30,12 @@ describe('ImageRecoveryComponent', () => {
     fixture = TestBed.createComponent(ImageRecoveryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    service=TestBed.inject(FypBackendService);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
 });

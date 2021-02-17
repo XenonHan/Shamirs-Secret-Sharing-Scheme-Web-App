@@ -5,15 +5,18 @@ import { TextEncryptionComponent } from './text-encryption.component';
 import { HttpClientTestingModule,  } from '@angular/common/http/testing';
 import { FypBackendService } from '../../../../fyp-backend.service';
 import { ReactiveFormsModule  } from '@angular/forms';
-import {  of } from 'rxjs';
+
+import { of, Observable,throwError } from 'rxjs';
 
 
-import { HttpClient } from '@angular/common/http';
+
+
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatDividerModule} from '@angular/material/divider';
 
 
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+
 
 
 
@@ -38,8 +41,8 @@ describe('TextEncryptionComponent', () => {
     component = fixture.componentInstance;
 
     fixture.detectChanges();
-    let http: HttpClient;
-    service=new FypBackendService(http);
+    
+    service=TestBed.inject(FypBackendService);
     
   });
 
@@ -47,13 +50,31 @@ describe('TextEncryptionComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Text Split', fakeAsync(() => {
+  it('Text Split OK', fakeAsync(() => {
     component.textForm.controls['secret'].setValue("test");
     component.textForm.controls['totalShare'].setValue(3);
     component.textForm.controls['threshold'].setValue(2);
    
-    spyOn(service, 'textEncryption').and.returnValue(of({'share0': 'AafjCPc='},{'share1': 'AafjCPc='},{'share2': 'AafjCPc='})); //{'share0': 'AafjCPc='} -> test
+    spyOn(service, 'textEncryption').and.returnValue(of({'share0': 'AafjCPc=','share1': 'AafjCPc=', 'share2': 'AafjCPc='})); //{'share0': 'AafjCPc='} -> test
     component.splitText();
+    expect(service.textEncryption).toHaveBeenCalled();
+
+  }));
+
+  it('Text Split error', fakeAsync(() => {
+    component.textForm.controls['secret'].setValue("test");
+    component.textForm.controls['totalShare'].setValue(3);
+    component.textForm.controls['threshold'].setValue(2);
+   
+    spyOn(service, 'textEncryption').and.returnValue(throwError( "" ) );
+    component.splitText();
+    expect(service.textEncryption).toHaveBeenCalled();
+
+  }));
+
+  it('Text Click', fakeAsync(() => {
+    component.isClick();
+
 
   }));
 
