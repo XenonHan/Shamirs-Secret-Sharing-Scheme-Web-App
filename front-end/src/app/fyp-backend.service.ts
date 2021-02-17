@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from './../environments/environment';
 import { error } from '@angular/compiler/src/util';
@@ -21,8 +21,6 @@ export class FypBackendService {
       observe: 'response'
     }).pipe(map(res => {
       return res.body;
-    }, error => {
-      return error;
     }));
   }
 
@@ -32,8 +30,6 @@ export class FypBackendService {
       observe: 'response'
     }).pipe(map(res => {
       return res.body;
-    }, error => {
-      return error;
     }));
   }
 
@@ -44,8 +40,6 @@ export class FypBackendService {
       observe: 'response'
     }).pipe(map(res => {
       return res.body;
-    }, error => {
-      return error;
     }));
   }
 
@@ -55,16 +49,10 @@ export class FypBackendService {
       observe: 'response'
     }).pipe(map(res => {
       return res.body;
-    }, error => {
-      return error;
     }));
   }
 
   zipEncryption(finalCheck, image: File, n: number, t: number): Observable<any> {
-    if (finalCheck > 15728640) {
-      // console.log("true");
-      throw new Error("invalid zip file size");
-    }
 
     let data = new FormData();
     data.append('image', image);
@@ -72,8 +60,6 @@ export class FypBackendService {
       observe: 'response'
     }).pipe(map(res => {
       return res.body;
-    }, error => {
-      return error;
     }));
   }
 
@@ -83,8 +69,6 @@ export class FypBackendService {
       observe: 'response'
     }).pipe(map(res => {
       return res.body;
-    }, error => {
-      return error;
     }));
   }
 

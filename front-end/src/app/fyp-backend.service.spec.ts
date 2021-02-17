@@ -65,6 +65,16 @@ describe('FypBackendService', () => {
 
   });
 
+  it('Zip encryption too large', () => {
+    service.zipEncryption(15728641,null,1,1).subscribe(testData=>{
+      expect(testData).toEqual(shares);
+    });
+    const request=httpTestingController.expectOne(service.apiUrl+ '/ZipApi/encryption/1/1');
+
+    request.flush(shares);
+
+  });
+
   it('Zip recovery OK', () => {
     service.zipRecovery(null,1).subscribe(testData=>{
       expect(testData).toEqual(secret);

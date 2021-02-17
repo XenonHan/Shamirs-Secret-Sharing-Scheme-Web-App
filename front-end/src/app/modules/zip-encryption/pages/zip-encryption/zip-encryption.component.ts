@@ -63,6 +63,11 @@ export class ZipEncryptionComponent implements OnInit {buffer: SafeResourceUrl [
     // console.log(this.zipForm.get('totalShare').value + "\n");
     // console.log(this.zipForm.get('threshold').value + "\n");
     // console.log(this.zipForm.get('secret').value + "\n");
+    if(this.imageFile.size>15728640)
+    {
+      this.tooLarge=true;
+      return;
+    }
     this.FypBackendService.zipEncryption(this.checkFinal,this.imageFile,this.zipForm.get('totalShare').value,this.zipForm.get('threshold').value).subscribe(res => {
       // console.log(res);
       this.loading=false;
