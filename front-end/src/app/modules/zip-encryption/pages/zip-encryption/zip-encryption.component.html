@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <br>
     <div style="text-align: center;">
-        <h1>Zip file Eccryption</h1>
+        <h1>Zip file Encryption</h1>
     </div>
 
     <mat-divider></mat-divider>
@@ -16,7 +16,7 @@
                 <div class="attribute" [fxFlex]="desktop?25:35">
                     <div style=" text-align: center">
                         <label for="totalShare"><span *ngIf="this.desktop">Total shares &nbsp;</span></label>
-                        <input type="number"  [placeholder]="desktop?'Number of shares':'n'" formControlName="totalShare"
+                        <input type="number" [placeholder]="desktop?'Number of shares':'n'" formControlName="totalShare"
                             [readonly]="received||loading" style="width: 50%;" min="1" max="20">
                     </div>
                     <div class="alert alert-danger" *ngIf="totalShare.touched &&(zipForm.get('totalShare').value>20)">
@@ -33,8 +33,10 @@
                     </ng-template>
                 </div>
                 <div class="attribute" [fxFlex]="desktop?25:35">
-                    <div >
-                        <label for="threshold" [ngStyle]=" desktop? {'padding-left': '15%;'}:{'padding-left': '20%;'} "><span *ngIf="this.desktop">Threshold &nbsp;</span></label>
+                    <div>
+                        <label for="threshold"
+                            [ngStyle]=" desktop? {'padding-left': '15%;'}:{'padding-left': '20%;'} "><span
+                                *ngIf="this.desktop">Threshold &nbsp;</span></label>
                         <input type="number" [placeholder]="desktop?'Threshold number':'t'" formControlName="threshold"
                             [readonly]="received||loading" style="width: 50%;" min="1" max="20">
                     </div>
@@ -75,7 +77,8 @@
 
                 <br>
                 <!-- <img [src]="image" style="width: 80%;  " download> -->
-                <h2 style="color: red">Zip encryption failed, properly due to the server ran out of resources currently (heap overflow)</h2>
+                <h2 style="color: red">Zip encryption failed, properly due to the server ran out of resources currently
+                    (heap overflow)</h2>
                 <h2 style="color: red">please split/compress the zip
                     file / input smaller total share number / try again later</h2>
                 <fa-icon [icon]="faTimesCircle" style="color: red;"></fa-icon>
@@ -106,8 +109,8 @@
 
 
             <button type="submit" mat-raised-button style="background-color: #ADD8E6; margin: auto;"
-                [disabled]="zipForm.invalid||(threshold.touched &&(zipForm.get('threshold').value>zipForm.get('totalShare').value||zipForm.get('threshold').value<1)||(zipForm.get('totalShare').value>20))" fxLayoutAlign="space-evenly none"
-                *ngIf="!this.received&&!loading;else Sharereceive">Split</button>
+                [disabled]="zipForm.invalid||(threshold.touched &&(zipForm.get('threshold').value>zipForm.get('totalShare').value||zipForm.get('threshold').value<1)||(zipForm.get('totalShare').value>20))"
+                fxLayoutAlign="space-evenly none" *ngIf="!this.received&&!loading;else Sharereceive">Split</button>
 
             <ng-template #Sharereceive>
                 <button *ngIf="loading&&!encryptFail" type="button" mat-raised-button fxLayoutAlign="space-evenly none"
