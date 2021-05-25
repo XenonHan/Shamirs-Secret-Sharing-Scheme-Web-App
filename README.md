@@ -6,7 +6,7 @@ The supported functions in this project includes:
 3.  Zip file
 
 # Unit Test
-This test doesn't include css, because is not meaningful.
+
 1.  Run the unit test: ng test
 2.  Generate coverage report: ng test --no-watch --code-coverage 
 
