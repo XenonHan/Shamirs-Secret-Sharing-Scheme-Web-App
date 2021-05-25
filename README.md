@@ -14,4 +14,4 @@ After execute the above command(s), there should be a index.html under \front-en
 
 Add use case(s): go to the .component.spec.ts in the relative modules.
 
-The backend repo of this project: https://github.com/XenonHan/Shamirs-Secret-Sharing-Scheme-Web-App
+The backend repo of this project: https://github.com/XenonHan/Shamirs-Secret-Sharing-Scheme-Web-App-Backend
