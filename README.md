@@ -5,7 +5,7 @@ The supported functions in this project includes:
 2.  Image  
 3.  Zip file
 
-The temperory url for this project: https://ssssonline.tk/ (host until mid July, 2021)
+
 
 # Unit Test
 
