@@ -6,6 +6,10 @@ The supported functions in this project includes:
 2.  Image  
 3.  Zip file 
 
+
+https://user-images.githubusercontent.com/55251580/151396899-fce8e31a-896e-4209-bc89-e3660bfebc62.mp4
+
+
 # Unit Test
 
 1.  Run the unit test: ng test
